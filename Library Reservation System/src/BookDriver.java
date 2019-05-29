@@ -1,10 +1,10 @@
-package tester;
+package bookdriver;
 /**
  *
  * @author pita
  */
 
-public class Tester
+public class BookDriver
 {
 	public static void main(String[] args)
         {

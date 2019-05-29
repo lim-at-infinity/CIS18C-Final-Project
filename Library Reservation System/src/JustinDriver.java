@@ -1,4 +1,4 @@
-package studyroom;
+package justindriver;
 
 import java.util.Scanner;
 import java.util.HashMap;
@@ -15,7 +15,7 @@ import java.util.Iterator;
 
 
 
-public class StudyRoom {
+public class JustinDriver {
     
     public static void main(String[] args) {
         
