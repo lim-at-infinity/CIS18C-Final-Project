@@ -5,7 +5,7 @@ public class Student {
     private final String name; //Student's name
     private final int ID; //Unique ID number for this student
     private static int nextUniqueID = 0; //Keep track of next available unique ID number
-    
+    private String email; //Student's email
     
     Student(String theName) {
         name = theName;     //Constructor for Student objects;
@@ -20,5 +20,10 @@ public class Student {
     public int getID() {  //Accessor method for reading value of ID
         return ID;
     }
+    
+    public String email() {
+        return email;
+    }
+    
     
 }
