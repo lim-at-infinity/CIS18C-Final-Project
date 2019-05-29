@@ -10,5 +10,7 @@ package studyroom;
  * @author jteet
  */
 public interface LSD {
-    
+    public void fromCSV (String CSV);
+    public String toCSV();
+    public void display();
 }

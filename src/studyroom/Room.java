@@ -1,6 +1,6 @@
 package studyroom;
 
-public class Room {
+public class Room implements LSD {
     private int room;
     private boolean isVacant;
 
@@ -40,6 +40,23 @@ public class Room {
     @Override
     public String toString() {
         return this.room + "," + this.isVacant;
+    }
+
+    @Override
+    public void fromCSV(String CSV) {
+        String[] arrOfStr = CSV.split(",");
+        this.room = Integer.parseInt(arrOfStr[0]);
+        this.isVacant = Boolean.parseBoolean(arrOfStr[1]);  
+    }
+
+    @Override
+    public String toCSV() {
+        return toString();
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Room # : " + room + "\nAvailability : " + isVacant);
     }
 
 }

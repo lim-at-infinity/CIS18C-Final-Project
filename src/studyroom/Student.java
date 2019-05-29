@@ -9,79 +9,44 @@ package studyroom;
  *
  * @author jteet
  */
-class Student {
-    protected String id;
-    protected String title;
-    protected String artist;
-    protected String genre;
-    protected int year;
-    protected double price;
+class Student implements LSD {
+    protected String name;
+    protected int studentID;
     
      // ----- ID Get and Set -----
-    public void setID(String id) {
-       this.id = id; 
+    public void setName(String name) {
+       this.name = name; 
     }
-    public String getID() {
-        return id;
-    }
-    
-    // ----- Title Get and Set -----
-    public void setTitle(String title) {
-        this.title = title;
-    } 
-    public String getTitle() {
-        return title;
-    }
-    
-    // ----- Artist Get and Set -----
-    public void setArtist(String artist) {
-        this.artist = artist;
-    }
-    public String getArtist() {
-        return artist;
-    }
-    
-    // ----- Genre Get and Set -----
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-    public String getGenre() {
-        return genre;
+    public String getName() {
+        return name;
     }
     
     // ----- Year Get and Set -----
-    public void setYear(int year) {
-        this.year = year;
+    public void setStudentID(int studentID) {
+        this.studentID = studentID;
     }
-    public int getYear() {
-        return year;
-    }
-    
-    // ----- Price Get and Set -----
-    public void setPrice(double price) {
-        this.price = price;
-    }
-    public double getPrice() {
-        return price;
+    public int getStudentID() {
+        return studentID;
     }
     
-    
-    
+    @Override
     public void fromCSV (String CSV) {
         String[] kv = CSV.split(":");
         String key = kv[0];
         
         String[] arrOfStr = kv[1].split(",");
         
-        this.id = key;
-        this.title = arrOfStr[0];
-        this.artist = arrOfStr[1];
-        this.genre = arrOfStr[2];
-        this.year = Integer.parseInt(arrOfStr[3]);
-        this.price = Double.parseDouble(arrOfStr[4]);
+        this.name = key;
+        this.studentID = Integer.parseInt(arrOfStr[0]);
     }
     
+    @Override
     public String toCSV() {
-        return this.id + ":" + this.title + "," + this.artist + "," + this.genre + "," + this.year + "," + this.price + "\n";
+        return this.name + ":" + this.studentID;
+    }
+
+    @Override
+    public void display() {
+        
     }
 }
