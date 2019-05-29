@@ -13,24 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class StudyRoom {
-    
-    public static void main(String[] args) {
-        
-        HashMap <String,Student> s = new HashMap();
-        Queue <Room> r = new LinkedList<Room>();
-        HashMap <String, Book> b = new HashMap();
-        
-        
-        loadStudent(s);
-        loadRoom(r);
-        loadBooks(b);
-        
-        
-        saveStudent(s); 
-        saveRoom(r);
-        saveBooks(b);
-    }
+public class TFLAS {
     
     // ===== Load Student HashMap =====
     

@@ -13,6 +13,11 @@ import java.util.Queue;
  * @author jteet
  */
 public class Book implements LSD {
+    /*
+    * Data Structure to represent a book
+    * Properties: Author, Title, ISBN, available quantitiy
+    */
+    
     // Properties of a book
 	protected int quantity;
 	protected String title;
@@ -21,7 +26,17 @@ public class Book implements LSD {
         protected String checkedOutBy;
 	protected Queue<String> waitingList;
         
-        //Constructor
+        // Default Constuctor
+        public Book() {
+            this.title = null;
+            this.author = null;
+            this.isbn = null;
+            this.quantity = 0;
+            this.checkedOutBy = null;
+            this.waitingList = null;
+        }
+        
+        // Overloaded Constructor
 	public Book(int quantity, String title, String isbn, String author) {
             this.quantity = quantity;
             this.title = title;

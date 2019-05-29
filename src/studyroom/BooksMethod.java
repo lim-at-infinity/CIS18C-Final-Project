@@ -6,10 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BooksMethod {
-    /*
-    * Data Structure to represent a book
-    * Properties: Author, Title, ISBN, available quantitiy
-    */
 
     // HashMap, mapping a book to it's title
     private HashMap<String, Book> books;
