@@ -21,7 +21,6 @@ public class StudyRoom {
         Queue <Room> r = new LinkedList<Room>();
         HashMap <String, Book> b = new HashMap();
         
-        
         loadStudent(s);
         loadRoom(r);
         loadBooks(b);

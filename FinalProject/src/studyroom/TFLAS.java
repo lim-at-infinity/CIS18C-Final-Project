@@ -17,7 +17,7 @@ public class TFLAS {
     
     // ===== Load Student HashMap =====
     
-    private static void loadStudent (HashMap <String,Student> s) {
+    public static void loadStudent (HashMap <String,Student> s) {
         File  databaseStudent = new File("databaseStudent.txt");
         FileReader read = null;
         
@@ -41,7 +41,7 @@ public class TFLAS {
     
     // ===== Load Student Queue =====
     
-    private static void loadRoom (Queue<Room> r) {
+    public static void loadRoom (Queue<Room> r) {
         File  databaseRooms = new File("databaseRooms.txt");
         FileReader read = null;
         
@@ -63,7 +63,7 @@ public class TFLAS {
         } catch (FileNotFoundException ex) {} 
     }
     
-    private static void loadBooks (HashMap <String,Book> b) {
+    public static void loadBooks (HashMap <String,Book> b) {
         File  databaseBooks = new File("databaseBooks.txt");
         FileReader read = null;
         
@@ -88,7 +88,7 @@ public class TFLAS {
     
     // ===== Save Student Database (HashMap) =====
     
-    private static void saveStudent(HashMap <String,Student> s) {       // Saves HashMaps
+    public static void saveStudent(HashMap <String,Student> s) {       // Saves HashMaps
         // ===== FILE CREATION =====
         FileReader read = null;
         File databaseStudent = new File("databaseStudent.txt");
@@ -131,7 +131,7 @@ public class TFLAS {
     
     // ===== Save Room Database (Queue) =====
     
-    private static void saveRoom(Queue <Room> r){       // Saves Queues
+    public static void saveRoom(Queue <Room> r){       // Saves Queues
         // ===== FILE CREATION =====
         FileReader read = null;
         File databaseRooms = new File("databaseRooms.txt");
@@ -171,7 +171,7 @@ public class TFLAS {
     
     // ===== Save Books Database (HashMap) =====
     
-    private static void saveBooks(HashMap <String,Book> b) {       // Saves HashMaps
+    public static void saveBooks(HashMap <String,Book> b) {       // Saves HashMaps
         // ===== FILE CREATION =====
         FileReader read = null;
         File databaseBooks = new File("databaseBooks.txt");
