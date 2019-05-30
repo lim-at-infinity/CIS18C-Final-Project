@@ -121,7 +121,7 @@ public class StudyRoom {
         
     }
 
-    
+
     // ===== Load Student HashMap =====
     
     private static void loadStudent (HashMap <Integer,Student> s) {  // KEY = StudentID
