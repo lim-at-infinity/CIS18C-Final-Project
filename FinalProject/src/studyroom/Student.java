@@ -11,9 +11,9 @@ package studyroom;
  */
 class Student implements LSD {
     protected String name;
-    protected int studentID;
+    protected Integer studentID;
     
-     // ----- ID Get and Set -----
+    // ----- ID Get and Set -----
     public void setName(String name) {
        this.name = name; 
     }
@@ -22,7 +22,7 @@ class Student implements LSD {
     }
     
     // ----- Year Get and Set -----
-    public void setStudentID(int studentID) {
+    public void setStudentID(Integer studentID) {
         this.studentID = studentID;
     }
     public int getStudentID() {
@@ -32,12 +32,12 @@ class Student implements LSD {
     @Override
     public void fromCSV (String CSV) {
         String[] kv = CSV.split(":");
-        String key = kv[0];
+        Integer key = Integer.parseInt(kv[0]);
         
         String[] arrOfStr = kv[1].split(",");
         
-        this.name = key;
-        this.studentID = Integer.parseInt(arrOfStr[0]);
+        this.studentID = key;
+        this.name = arrOfStr[0];
     }
     
     @Override
@@ -47,6 +47,6 @@ class Student implements LSD {
 
     @Override
     public void display() {
-        
+        System.out.println("Student ID : " + studentID + "\nStudent Name : " + name);
     }
 }

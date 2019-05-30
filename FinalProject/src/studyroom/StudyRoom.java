@@ -17,23 +17,129 @@ public class StudyRoom {
     
     public static void main(String[] args) {
         
-        HashMap <String,Student> s = new HashMap();
+        // Input and Collections Creation
+        HashMap <Integer,Student> s = new HashMap();
         Queue <Room> r = new LinkedList<Room>();
         HashMap <String, Book> b = new HashMap();
+        Scanner input = new Scanner(System.in);
         
+        // Loading up Collections
         loadStudent(s);
         loadRoom(r);
         loadBooks(b);
         
-        
-        saveStudent(s); 
+        // Call Menu
+        logInMenu(input,s,r,b);
+    }
+    
+    
+    
+    public static void logInMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+        Integer userOption = null;
+        do {
+            logInMenuInfo();
+            String userOptionString = input.nextLine();
+            userOption = Integer.parseInt(userOptionString);
+            
+            // User inputs INVALID Log In option
+            if (userOption != 1 && userOption != 2 && userOption != 3) {
+                userOptionInputError(input,userOption);
+            }
+            // Logs into Library
+            else if (userOption == 1) {
+                
+            }
+            // Registers current user as a New User
+            else if (userOption == 2) {
+                
+            }
+            // Saves and Exits the Program
+            else if (userOption == 3) {
+                saveAll(s,r,b);
+            }
+            
+        } while (userOption != 3);
+    }
+    
+    public static Integer userOptionInputError(Scanner input, Integer userOption) {
+        System.out.println(" ===== INVALID ENTRY =====");
+        System.out.print("  Select your option :  ");
+        String userOptionString = input.nextLine();
+        userOption = Integer.parseInt(userOptionString);
+        return userOption;
+    }
+    
+    public static void logInMenuInfo() {
+        System.out.println("\n --- Welcome to the Wilfred J. Airey Library at Norco College ---");
+        System.out.println(" --- How can we help you today? ---");
+        System.out.println("1) Press '1' to Log In.");
+        System.out.println("2) Press '2' to Register as a New User.");
+        System.out.println("3) Press '3' to Exit the Program.");
+        System.out.print("  Select your option :  ");
+    }
+    
+    public static void saveAll(HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+        System.out.println(" --- Saving all Databases ---");
+                
+        // Saves all Collections to Text Files
+        saveStudent(s);
         saveRoom(r);
         saveBooks(b);
+                
+        System.out.println(" --- Thank you for using our Services! ---" 
+                + "\n --- We hope to see you again soon! ---");
+        System.out.println(" --- Press any key to exit... ---");
+        
+        // Press any Button to end program
+        new Scanner(System.in).nextLine();
+        
+        // Ends Program
+        System.exit(0);
     }
+    
+    public static void functionLogIn(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+        Integer userStudentID = null;
+        System.out.print("\nPlease enter your Student ID to log in : ");
+        String userStudentIDString = input.nextLine();
+        userStudentID = Integer.parseInt(userStudentIDString);
+        
+        do {
+            if (userStudentIDString.toLowerCase().equals("admin")) {
+                // --> Go to admin menus <--
+            }
+            else if (userStudentIDString.toLowerCase().equals("back")) {
+                return;
+            }
+            else if (!s.containsKey(userStudentID)){
+                
+            }
+            
+        } while (!userStudentIDString.toLowerCase().equals("back"));
+    }
+    
+    public static void functionLogInNotRegistered(Scanner input) {
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     // ===== Load Student HashMap =====
     
-    private static void loadStudent (HashMap <String,Student> s) {
+    private static void loadStudent (HashMap <Integer,Student> s) {  // KEY = StudentID
         File  databaseStudent = new File("databaseStudent.txt");
         FileReader read = null;
         
@@ -47,7 +153,7 @@ public class StudyRoom {
                 while((line = br.readLine()) != null) {
                     Student blank  = new Student();
                     blank.fromCSV(line);
-                    s.put(blank.getName(),blank);
+                    s.put(blank.getStudentID(),blank);
                 }
             } catch (IOException ex) {
                 System.out.println("STUDENT Binary Files are NOT supported");
@@ -79,7 +185,7 @@ public class StudyRoom {
         } catch (FileNotFoundException ex) {} 
     }
     
-    private static void loadBooks (HashMap <String,Book> b) {
+    private static void loadBooks (HashMap <String,Book> b) {   // KEY = Book Title
         File  databaseBooks = new File("databaseBooks.txt");
         FileReader read = null;
         
@@ -104,7 +210,7 @@ public class StudyRoom {
     
     // ===== Save Student Database (HashMap) =====
     
-    private static void saveStudent(HashMap <String,Student> s) {       // Saves HashMaps
+    private static void saveStudent(HashMap <Integer,Student> s) {       // Saves HashMaps ; KEY = StudentID
         // ===== FILE CREATION =====
         FileReader read = null;
         File databaseStudent = new File("databaseStudent.txt");
@@ -118,8 +224,8 @@ public class StudyRoom {
                 writer = new FileWriter("databaseStudent.txt");
                 BufferedWriter out = new BufferedWriter(writer);
                 
-                for (Iterator<String> it = s.keySet().iterator(); it.hasNext();) {
-                    String curr = it.next();
+                for (Iterator<Integer> it = s.keySet().iterator(); it.hasNext();) {
+                    Integer curr = it.next();
                     out.write(s.get(curr).toCSV());                                 // Each iteration of student is being saved
                 }
                 out.close();                                                        // Stops the File Writer
@@ -133,8 +239,8 @@ public class StudyRoom {
                 writer = new FileWriter("databaseStudent.txt");
                 BufferedWriter out = new BufferedWriter(writer);
                 
-                for (Iterator<String> it = s.keySet().iterator(); it.hasNext();) {
-                    String curr = it.next();
+                for (Iterator<Integer> it = s.keySet().iterator(); it.hasNext();) {
+                    Integer curr = it.next();
                     out.write(s.get(curr).toCSV());                                 // Each iteration of student is being saved
                 }
                 out.close();                                                        // Stops the File Writer
@@ -187,7 +293,7 @@ public class StudyRoom {
     
     // ===== Save Books Database (HashMap) =====
     
-    private static void saveBooks(HashMap <String,Book> b) {       // Saves HashMaps
+    private static void saveBooks(HashMap <String,Book> b) {       // Saves HashMaps ; KEY = Book Titlex
         // ===== FILE CREATION =====
         FileReader read = null;
         File databaseBooks = new File("databaseBooks.txt");

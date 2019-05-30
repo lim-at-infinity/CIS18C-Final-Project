@@ -19,7 +19,7 @@ public class Book implements LSD {
     */
     
     // Properties of a book
-	protected int quantity;
+	protected Integer quantity;
 	protected String title;
         protected String isbn;
         protected String author;
@@ -37,7 +37,7 @@ public class Book implements LSD {
         }
         
         // Overloaded Constructor
-	public Book(int quantity, String title, String isbn, String author) {
+	public Book(Integer quantity, String title, String isbn, String author) {
             this.quantity = quantity;
             this.title = title;
             this.isbn = isbn;
@@ -46,41 +46,50 @@ public class Book implements LSD {
             waitingList = new LinkedList<String>();
 	}
 
-	// Getters
-        public int getQuantity() {
+        // ----- Quantity Get and Set -----
+        // (IN LIBRARY NOT CHECKED OUT)
+        public Integer getQuantity() {
             return quantity; 
         }
-	public String getTitle() { 
-            return title; 
-        }
-	public String getISBN() { 
-            return isbn; 
-        }
-        public String getAuthor() {
-            return author; 
-        }
-	public String getLastRenter() {
-            return checkedOutBy; 
-        }
-	public Queue<String> getWaitingList() {
-            return waitingList;
-        }
-
-        // Setters
         public void setQuantity(int quantity) { 
             this.quantity = quantity;
+        }
+        
+        // ----- Title Get and Set -----
+	public String getTitle() { 
+            return title; 
         }
         public void setTitle(String title) { 
            this.title = title; 
         }
+        
+        // ----- ISBN Get and Set -----
+	public String getISBN() { 
+            return isbn; 
+        }
         public void setISBN(String isbn) { 
             this.isbn = isbn; 
+        }
+        
+        // ----- Author Get and Set -----
+        public String getAuthor() {
+            return author; 
         }
         public void setAuthor(String author) { 
             this.author = author;
         }
+        
+        // ----- CheckedOutBy Get and Set -----
+	public String getLastRenter() {
+            return checkedOutBy; 
+        }
         public void setRenter(String checkedOutBy) { 
             this.checkedOutBy = checkedOutBy; 
+        }
+        
+        // ----- WaitingList Get and Set -----
+	public Queue<String> getWaitingList() {
+            return waitingList;
         }
         public void adjustWaitingList(Queue<String> updatedWaitingList) { 
             waitingList = updatedWaitingList;
@@ -108,6 +117,6 @@ public class Book implements LSD {
         @Override
         public void display() {
             System.out.println("Title : " + this.title + "\nAuthor : " + this.author + "\nISBN : " + this.isbn 
-            + "\nQuantity" + this.quantity + "Checked out by : " + this.checkedOutBy);
+            + "\nQuantity in Library : " + this.quantity + "Checked out by : " + this.checkedOutBy);
         }
 }
