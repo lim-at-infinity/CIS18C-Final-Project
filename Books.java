@@ -1,4 +1,5 @@
-package tester;
+
+package tester_2;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -11,7 +12,7 @@ public class Books
     * Data Structure to represent a book
     * Properties: Author, Title, ISBN, available quantitiy
     */
-    private class Book
+   private class Book
     {
 	// Properties of a book
 	private int quantity;
@@ -31,8 +32,8 @@ public class Books
             checkedOutBy = null;
             waitingList = new LinkedList<String>();
 	}
-
-	// Getters
+        
+        // Getters
         public int getQuantity()
         {
             return quantity; 
@@ -58,7 +59,7 @@ public class Books
             return waitingList;
         }
 
-        // Setters
+	// Setters
         public void setQuantity(int quantity)
         { 
             this.quantity = quantity;
