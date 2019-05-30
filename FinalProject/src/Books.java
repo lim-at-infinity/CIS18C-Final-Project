@@ -9,29 +9,25 @@ public class Books
     * Data Structure to represent a book
     * Properties: Author, Title, ISBN, available quantitiy
     */
-    private class Book
-    {
-	// Properties of a book
-	private int quantity;
-	private String title;
-        private String isbn;
-        private String author;
-        private String checkedOutBy;
-	private Queue<String> waitingList;
-        
-        //Constructor
-	public Book(int quantity, String title, String isbn, String author)
-        {
-            this.quantity = quantity;
-            this.title = title;
-            this.isbn = isbn;
-            this.author = author;
-            checkedOutBy = null;
-            waitingList = new LinkedList<String>();
+    private class Book {
+
+    private int quantity;
+    private String title;
+    private String isbn;
+    private String author;
+    private String checkedOutBy;
+    private Queue<String> waitingList;
+
+	public Book(int quantity, String title, String isbn, String author) {
+	    this.quantity = quantity;
+	    this.title = title;
+	    this.isbn = isbn;
+	    this.author = author;
+	    checkedOutBy = null;
+	    waitingList = new LinkedList<String>();
 	}
 
-	// Getters
-        public int getQuantity()
+	public int getQuantity()
         {
             return quantity; 
         }
@@ -42,8 +38,7 @@ public class Books
 	public String getISBN() 
         { 
             return isbn; 
-        }
-        public String getAuthor() 
+        }public String getAuthor()
         {
             return author; 
         }
@@ -56,28 +51,27 @@ public class Books
             return waitingList;
         }
 
-        // Setters
-        public void setQuantity(int quantity)
+    public void setQuantity(int quantity)
         { 
             this.quantity = quantity;
         }
-        public void setTitle(String title) 
+    public void setTitle(String title)
         { 
            this.title = title; 
         }
-        public void setISBN(String isbn) 
+    public void setISBN(String isbn)
         { 
             this.isbn = isbn; 
         }
-        public void setAuthor(String author) 
+    public void setAuthor(String author)
         { 
             this.author = author;
         }
-        public void setRenter(String checkedOutBy)
+    public void setRenter(String checkedOutBy)
         { 
             this.checkedOutBy = checkedOutBy; 
         }
-        public void adjustWaitingList(Queue<String> updatedWaitingList)
+    public void adjustWaitingList(Queue<String> updatedWaitingList)
         { 
             waitingList = updatedWaitingList;
         }

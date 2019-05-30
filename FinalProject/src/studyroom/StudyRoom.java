@@ -120,22 +120,7 @@ public class StudyRoom {
     public static void functionLogInNotRegistered(Scanner input) {
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     // ===== Load Student HashMap =====
     
