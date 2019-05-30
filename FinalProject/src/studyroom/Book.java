@@ -103,7 +103,9 @@ public class Book implements LSD {
         } else {
             books.put(title, newBook);
         }
-        return "Book was succesfully added!";
+
+        return "Book was successfully added!";
+
     }
 
     /*
@@ -221,5 +223,5 @@ public class Book implements LSD {
         System.out.println("Title : " + this.title + "\nAuthor : " + this.author + "\nISBN : " + this.isbn
             + "\nQuantity in Library : " + this.quantity + "Checked out by : " + this.checkedOutBy);
     }
-
 }
+
