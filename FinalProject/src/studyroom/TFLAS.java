@@ -17,7 +17,7 @@ public class TFLAS {
     
     // ===== Load Student HashMap =====
     
-    public static void loadStudent (HashMap <String,Student> s) {
+    private static void loadStudent (HashMap <Integer,Student> s) {  // KEY = StudentID
         File  databaseStudent = new File("databaseStudent.txt");
         FileReader read = null;
         
@@ -31,7 +31,7 @@ public class TFLAS {
                 while((line = br.readLine()) != null) {
                     Student blank  = new Student();
                     blank.fromCSV(line);
-                    s.put(blank.getName(),blank);
+                    s.put(blank.getStudentID(),blank);
                 }
             } catch (IOException ex) {
                 System.out.println("STUDENT Binary Files are NOT supported");
@@ -41,7 +41,7 @@ public class TFLAS {
     
     // ===== Load Student Queue =====
     
-    public static void loadRoom (Queue<Room> r) {
+    private static void loadRoom (Queue<Room> r) {
         File  databaseRooms = new File("databaseRooms.txt");
         FileReader read = null;
         
@@ -63,7 +63,7 @@ public class TFLAS {
         } catch (FileNotFoundException ex) {} 
     }
     
-    public static void loadBooks (HashMap <String,Book> b) {
+    private static void loadBooks (HashMap <String,Book> b) {   // KEY = Book Title
         File  databaseBooks = new File("databaseBooks.txt");
         FileReader read = null;
         
@@ -88,7 +88,7 @@ public class TFLAS {
     
     // ===== Save Student Database (HashMap) =====
     
-    public static void saveStudent(HashMap <String,Student> s) {       // Saves HashMaps
+    private static void saveStudent(HashMap <Integer,Student> s) {       // Saves HashMaps ; KEY = StudentID
         // ===== FILE CREATION =====
         FileReader read = null;
         File databaseStudent = new File("databaseStudent.txt");
@@ -102,8 +102,8 @@ public class TFLAS {
                 writer = new FileWriter("databaseStudent.txt");
                 BufferedWriter out = new BufferedWriter(writer);
                 
-                for (Iterator<String> it = s.keySet().iterator(); it.hasNext();) {
-                    String curr = it.next();
+                for (Iterator<Integer> it = s.keySet().iterator(); it.hasNext();) {
+                    Integer curr = it.next();
                     out.write(s.get(curr).toCSV());                                 // Each iteration of student is being saved
                 }
                 out.close();                                                        // Stops the File Writer
@@ -117,8 +117,8 @@ public class TFLAS {
                 writer = new FileWriter("databaseStudent.txt");
                 BufferedWriter out = new BufferedWriter(writer);
                 
-                for (Iterator<String> it = s.keySet().iterator(); it.hasNext();) {
-                    String curr = it.next();
+                for (Iterator<Integer> it = s.keySet().iterator(); it.hasNext();) {
+                    Integer curr = it.next();
                     out.write(s.get(curr).toCSV());                                 // Each iteration of student is being saved
                 }
                 out.close();                                                        // Stops the File Writer
@@ -131,7 +131,7 @@ public class TFLAS {
     
     // ===== Save Room Database (Queue) =====
     
-    public static void saveRoom(Queue <Room> r){       // Saves Queues
+    private static void saveRoom(Queue <Room> r){       // Saves Queues
         // ===== FILE CREATION =====
         FileReader read = null;
         File databaseRooms = new File("databaseRooms.txt");
@@ -171,7 +171,7 @@ public class TFLAS {
     
     // ===== Save Books Database (HashMap) =====
     
-    public static void saveBooks(HashMap <String,Book> b) {       // Saves HashMaps
+    private static void saveBooks(HashMap <String,Book> b) {       // Saves HashMaps ; KEY = Book Titlex
         // ===== FILE CREATION =====
         FileReader read = null;
         File databaseBooks = new File("databaseBooks.txt");

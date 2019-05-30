@@ -6,7 +6,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BooksMethod {
-
+    
+    Book book = new Book();
     // HashMap, mapping a book to it's title
     private HashMap<String, Book> books;
 
