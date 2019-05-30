@@ -112,7 +112,7 @@ public class Book implements LSD {
         } else {
             books.put(title, newBook);
         }
-        return "Book was succesfully added!";
+        return "Book was successfully added!";
     }
 
     /*
