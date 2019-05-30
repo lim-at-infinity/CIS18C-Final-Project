@@ -10,10 +10,18 @@ package studyroom;
  * @author jteet
  */
 class Student implements LSD {
-    protected String name;
-    protected Integer studentID;
+    private String name;
+    private Integer studentID;
+    private String email;
     
-    // ----- ID Get and Set -----
+    // Default Constructor
+    Student() {
+        this.name = null;
+        this.studentID = 0;
+        this.email = null;
+    }
+    
+    // ----- Name Set and Get -----
     public void setName(String name) {
        this.name = name; 
     }
@@ -21,12 +29,20 @@ class Student implements LSD {
         return name;
     }
     
-    // ----- Year Get and Set -----
+    // ----- Student ID Set and Get -----
     public void setStudentID(Integer studentID) {
         this.studentID = studentID;
     }
     public int getStudentID() {
         return studentID;
+    }
+    
+    // ----- Email Set and Get -----\
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getEmail() {
+        return email;
     }
     
     @Override
@@ -38,15 +54,16 @@ class Student implements LSD {
         
         this.studentID = key;
         this.name = arrOfStr[0];
+        this.email = arrOfStr[1];
     }
     
     @Override
     public String toCSV() {
-        return this.name + ":" + this.studentID;
+        return this.name + ":" + this.studentID + "," + this.email;
     }
 
     @Override
     public void display() {
-        System.out.println("Student ID : " + studentID + "\nStudent Name : " + name);
+        System.out.println("Student ID : " + studentID + "\nStudent Name : " + name + "\n Student Email : " + email);
     }
 }

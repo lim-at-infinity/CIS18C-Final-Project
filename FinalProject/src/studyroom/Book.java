@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package studyroom;
 
 import java.util.HashMap;
@@ -10,22 +5,18 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Queue;
 
-/**
- *
- * @author jteet
- */
 public class Book implements LSD {
     /*
     * Data Structure to represent a book
     * Properties: Author, Title, ISBN, available quantity
     */
 
-	protected Integer quantity;
-	protected String title;
-	protected String isbn;
-    protected String author;
-    protected String checkedOutBy;
-	protected Queue<String> waitingList;
+    private Integer quantity;
+    private String title;
+    private String isbn;
+    private String author;
+    private String checkedOutBy;
+    private Queue<String> waitingList;
     private Book book = new Book();
     private HashMap<String, Book> books; // HashMap, mapping a book to it's title
         
@@ -112,7 +103,9 @@ public class Book implements LSD {
         } else {
             books.put(title, newBook);
         }
+
         return "Book was successfully added!";
+
     }
 
     /*
@@ -230,5 +223,5 @@ public class Book implements LSD {
         System.out.println("Title : " + this.title + "\nAuthor : " + this.author + "\nISBN : " + this.isbn
             + "\nQuantity in Library : " + this.quantity + "Checked out by : " + this.checkedOutBy);
     }
-
 }
+
