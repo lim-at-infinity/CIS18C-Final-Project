@@ -1,11 +1,24 @@
 package studyroom;
 
+import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Queue;
+import java.util.LinkedList;
+import java.util.Iterator;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
 public class StudyRoom {
 
     
     public static void main(String[] args) {
         
-        // Input and Collections Creation
+        // Input and Collections CREATION
         HashMap <Integer,Student> s = new HashMap();
         Queue <Room> r = new LinkedList<Room>();
         HashMap <String, Book> b = new HashMap();
@@ -43,7 +56,7 @@ public class StudyRoom {
             }
             // Registers current user as a New User
             else if (userOption == 2) {
-                // Library Register New User Function
+                registerStudent(input,s);
             }
             // Saves and Exits the Program
             else if (userOption == 3) {
@@ -56,7 +69,7 @@ public class StudyRoom {
     public static boolean isNumeric(String strNum) {
         try {
             Integer digit = Integer.parseInt(strNum);
-        } catch (NumberFormatException|NullPointerException nfe) {
+        } catch (NumberFormatException nfe) {
             return false;
         }
         return true;
@@ -90,7 +103,6 @@ public class StudyRoom {
         System.out.println(" --- Thank you for using our Services! ---" 
                 + "\n --- We hope to see you again soon! ---");
         System.out.println(" --- Press any key to exit... ---");
-        
         // Press any Button to end program
         new Scanner(System.in).nextLine();
         
@@ -99,18 +111,20 @@ public class StudyRoom {
     }
     
     public static void functionLogIn(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
-        Integer userStudentID = null;
-        String userStudentIDString = null;
+        Integer userStudentID = 0;
+        String userStudentIDString = "";
         do {
             System.out.println("\n ---Please enter your Student ID to log in,"
-                    + "or enter 'back' to return to the Log In Menu. ---");
+                    + " or enter 'back' to return to the Log In Menu. ---");
             System.out.print("  Student ID : ");
             userStudentIDString = input.nextLine();
+            
             // Check if ID input is either a number, 'admin', or 'back
-            while (!isNumeric(userStudentIDString) || !userStudentIDString.toLowerCase().equals("admin") 
-                    || !userStudentIDString.toLowerCase().equals("back")) {
+            while (!isNumeric(userStudentIDString) && !userStudentIDString.toLowerCase().equals("admin") 
+                    && !userStudentIDString.toLowerCase().equals("back")) {
                 userStudentIDString = functionStudentIDNotNumeric(input, userStudentIDString);
             }
+            
             // If ID is a number, parse the string as an integer
             if (isNumeric(userStudentIDString)) {
                 userStudentID = Integer.parseInt(userStudentIDString);
@@ -118,7 +132,7 @@ public class StudyRoom {
         
             // Admin's Log In
             if (userStudentIDString.toLowerCase().equals("admin")) {
-                // --> Go to admin menus <--
+                adminMenu(input,s,r,b);
             }
             // Return to Log In Menu
             else if (userStudentIDString.toLowerCase().equals("back")) {
@@ -130,20 +144,20 @@ public class StudyRoom {
             }
             // Student's Log In
             else if (s.containsKey(userStudentID)) {
-                // --> Go to Student's Menu
+                studentMenu(input,s,r,b);
             }
             
         } while (!userStudentIDString.toLowerCase().equals("back"));
     }
     
     public static void functionLogInNotRegistered() {
-        System.out.println("ID has not been registered into the Library Collection.");
-        System.out.println("Please return to the Log In Menu to register your Student ID.");
+        System.out.println(" --- ID has not been registered into the Library Collection. ---");
+        System.out.println(" --- Please return to the Log In Menu to register your Student ID. ---");
     }
     
     public static String functionStudentIDNotNumeric(Scanner input, String userStudentIDString) {
-        System.out.println("Student ID is Numeric. Please enter your NUMERIC Student ID.");
-        System.out.print("Student ID :  ");
+        System.out.println(" ===== ERROR: Student ID is NUMERIC. Please enter your NUMERIC Student ID. =====");
+        System.out.print("    Student ID :  ");
         userStudentIDString = input.nextLine();
         return userStudentIDString;
     }
@@ -158,34 +172,35 @@ public class StudyRoom {
         while (!isNumeric(registerStudentID)) {
             registerStudentID = functionStudentIDNotNumeric(input, registerStudentID);
         }
+        // ----> IMPORTANT: Need to include an ID check, see if it already exists in Hashmap
+        // ----> IMPORTANT: IF ID exists, call user to input a different ID
         temp.setStudentID(Integer.parseInt(registerStudentID));
         
         // New Student Name
         System.out.println("\n --- Please Enter your First Name ---");
         System.out.print("  Student Name :  ");
-        String registerStudentName = input.nextLine();
-        temp.setName(registerStudentName);
+        String registerStudentFirstName = input.nextLine();
+        temp.setFirstName(registerStudentFirstName);
         
         // New Student Email
-        System.out.println("\n --- Please Enter your Student Email ---");
+        System.out.println("\n --- Please Enter your Last Name ---");
         System.out.print("  Student Email :  ");
-        String registerStudentEmail = input.nextLine();
-        temp.setEmail(registerStudentEmail);
+        String registerStudentLastName = input.nextLine();
+        temp.setLastName(registerStudentLastName);
         
         s.put(Integer.parseInt(registerStudentID), temp);
         System.out.println("\n --- New Student added to the Library Collection ---");
     }
     
     public static void adminMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
-        Integer adminOption = null;
+        Integer adminOption = 0;
         adminMenuInfo();
         String adminOptionString = input.nextLine();
         do {
             // Check if Option input is either a number or 'back'
-            while(!isNumeric(adminOptionString) || adminOptionString.toLowerCase().equals("back")) {
+            while(!isNumeric(adminOptionString) && !adminOptionString.toLowerCase().equals("back")) {
                 adminOptionString = userOptionInputError(input,adminOptionString);
             }
-            
             // IF Option is a number, parse the string as an integer
             if (isNumeric(adminOptionString)) {
                 adminOption = Integer.parseInt(adminOptionString);
@@ -201,30 +216,247 @@ public class StudyRoom {
             }
             // Access to Students Collection
             else if (adminOption == 1) {
-                // --> Go to STUDENTS Collection Menu <--
+                adminMenuStudents(input, s);
+                break;
             }
             // Access to Rooms Collection
             else if (adminOption == 2) {
-                // --> Go to ROOMS Collection Menu <--
+                adminMenuRooms(input,r);
             }
             // Access to Books Collection
             else if (adminOption == 3) {
-                // --> Go to BOOKS Collection Menu <--
+                adminMenuBooks(input,b);
             }
             
-        } while (!adminOptionString.toLowerCase().equals("back"));
-        
-        
+        } while (!adminOptionString.toLowerCase().equals("back"));  
     }
     
     public static void adminMenuInfo(){
-        System.out.println("\n ===== ADMIN'S MENU =====");
+        System.out.println("\n ===== ADMIN'S MENU - MAIN =====");
         System.out.println("\n --- Which Collection would you like to access? ---");
         System.out.println("1) Press '1' to access Student Collection.");
         System.out.println("2) Press '2' to access Rooms Collection.");
         System.out.println("3) Press '3' to access Books Collection.");
-        System.out.println("4) Enter 'back' to return to Log In");
+        System.out.println("4) Enter 'back' to return to Log In.");
         System.out.print("  Select your option :  ");
+    }
+    
+    public static void studentMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+        Integer studentOption = 0;
+        studentMenuInfo();
+        String studentOptionString = input.nextLine();
+        do {
+            // Check if Option input is either a number or 'back'
+            while (!isNumeric(studentOptionString) && !studentOptionString.toLowerCase().equals("back")) {
+                studentOptionString = userOptionInputError(input,studentOptionString);
+            }
+            // IF Option is a number, parse the string as an integer
+            if (isNumeric(studentOptionString)) {
+                studentOption = Integer.parseInt(studentOptionString);
+            }
+            
+            // Return to Log In
+            if (studentOptionString.toLowerCase().equals("back")) {
+                return;
+            }
+            // Student inputs INVALID Menu Option
+            else if (studentOption != 1 && studentOption != 2 && studentOption != 3 && studentOption != 4) {
+                studentOptionString = userOptionInputError(input,studentOptionString);
+            }
+            // Go to ROOM check-OUT
+            else if (studentOption == 1) {
+                // --> Go to ROOM CHECKOUT Function <--
+            }
+            // Go to ROOM check-IN
+            else if (studentOption == 2) {
+                // -->Go to ROOM CHECKIN Function <--
+            }
+            // Go to BOOK check-OUT
+            else if (studentOption == 3) {
+                // Go to BOOK CHECKOUT Function <--
+            }
+            // Go to BOOK check-IN
+            else if (studentOption == 4) {
+                // Go to BOOK CHECKIN Function <--
+            }
+        } while (!studentOptionString.toLowerCase().equals("back"));
+    }
+    
+    public static void studentMenuInfo() {
+        System.out.println(" ===== Student's Menu =====");
+        System.out.println("\n --- What would you like to do? ---");
+        System.out.println("1) Press '1' to check out a study room.");
+        System.out.println("2) Press '2' to check a study room back in.");
+        System.out.println("3) Press '3' to check out a book.");
+        System.out.println("4) Press '4' to check a book back in.");
+        System.out.println("5) Enter 'back' to return to Log In.");
+        System.out.print("    Select your option :  ");
+    }
+    
+    public static void adminMenuStudents(Scanner input, HashMap<Integer,Student> s) {
+        Integer adminOptionStudent = 0;
+        adminMenuStudentsInfo();
+        String adminOptionStudentString = input.nextLine();
+        do {
+            // Check if Option input is either a number or 'back'
+            while (!isNumeric(adminOptionStudentString) && !adminOptionStudentString.toLowerCase().equals("back")) {
+                adminOptionStudentString = userOptionInputError(input,adminOptionStudentString);
+            }
+            // IF Option is a number, parse the string as an integer
+            if (isNumeric(adminOptionStudentString)) {
+                adminOptionStudent = Integer.parseInt(adminOptionStudentString);
+            }
+            
+            // Return to Main Admin's Menu
+            if (adminOptionStudentString.toLowerCase().equals("back")) {
+                return;
+            }
+            // Student inputs INVALID Menu Option
+            else if (adminOptionStudent != 1 && adminOptionStudent != 2 && adminOptionStudent != 3) {
+                adminOptionStudentString = userOptionInputError(input,adminOptionStudentString);
+            }
+            // Create a new Student Profile, and add to Student HashMap
+            else if (adminOptionStudent == 1){
+                // --> Go to createStudent(HashMap<Integer,Student> s) function <--
+                // --> IMPORTANT: in createStudent function, check it !HashMap.isFull();
+            }
+            // Select and Edit a Current Student Profile
+            else if (adminOptionStudent == 2){
+                // --> Go to editStudent(HashMap<Integer,Student> s) function <--
+                // --> IMPORTANT: in editStudent function, check it !HashMap.isEmpty();
+            }
+            // Select and Delete a Current Student Profile
+            else if (adminOptionStudent == 3){
+                // --> Go to deleteStudent(HashMap<Integer,Student> s) function <--
+                // --> IMPORTANT: in deleteStudent function, check it !HashMap.isEmpty();
+            }
+            
+        } while (!adminOptionStudentString.toLowerCase().equals("back"));
+    }
+    
+    public static void adminMenuStudentsInfo() {
+        System.out.println("\n ===== ADMIN'S MENU - STUDENTS ======");
+        System.out.println("\n --- What would you like to do? ---");
+        System.out.println("1) Press '1' to Create a New Student Profile.");
+        System.out.println("2) Press '2' to Edit any Current Student Profiles.");
+        System.out.println("3) Press '3' to Delete any Student Profile.");
+        System.out.println("4) Enter 'back' to return to MAIN ADMIN'S MENU.");
+        System.out.print("    Select your option :  ");
+    }
+    
+    public static void adminMenuRooms(Scanner input, Queue<Room> r){
+        Integer adminOptionRoom = 0;
+        adminMenuRoomsInfo();
+        String adminOptionRoomString = input.nextLine();
+        do {
+            // Check if Option input is either a number or 'back'
+            while (!isNumeric(adminOptionRoomString) && !adminOptionRoomString.toLowerCase().equals("back")) {
+                adminOptionRoomString = userOptionInputError(input,adminOptionRoomString);
+            }
+            // IF Option is a number, parse the string as an integer
+            if (isNumeric(adminOptionRoomString)) {
+                adminOptionRoom = Integer.parseInt(adminOptionRoomString);
+            }
+            
+            // Return to Main Admin's Menu
+            if (adminOptionRoomString.toLowerCase().equals("back")) {
+                return;
+            }
+            // Student inputs INVALID Menu Option
+            else if (adminOptionRoom != 1 && adminOptionRoom != 2 && adminOptionRoom != 3 && adminOptionRoom != 4) {
+                adminOptionRoomString = userOptionInputError(input,adminOptionRoomString);
+            }
+            // Create a new Room, and add to Room Queue
+            else if (adminOptionRoom == 1){
+                // --> Go to createRoom(Queue<Room> r) function <--
+                // --> IMPORTANT: in createRoom function, check it !Queue.isFull();
+            }
+            // Select and Delete a Current Room
+            else if (adminOptionRoom == 2){
+                // --> Go to deleteStudent(Queue<Room> r) function <--
+                // --> IMPORTANT: in deleteStudent function, check it !Queue.isEmpty();
+            }
+            // Go to Rooms Management Menu
+            else if (adminOptionRoom == 3){
+                // --> Go to manageRoomsMenu(Queue<Room> r) function <--
+            }
+            // Go to Rooms Waiting List Management Menu
+            else if (adminOptionRoom == 4){
+                // --> Go to manageWaitingListRoomsMenu(Queue<Room> r) function <--
+            }
+            
+        } while (!adminOptionRoomString.toLowerCase().equals("back"));
+    }
+    
+    public static void adminMenuRoomsInfo() {
+        System.out.println("\n ===== ADMIN'S MENU - ROOMS ======");
+        System.out.println("\n --- What would you like to do? ---");
+        System.out.println("1) Press '1' to Create a New Room.");
+        System.out.println("2) Press '2' to Delete a Current Room.");
+        System.out.println("3) Press '3' to Manage Current Rooms.");
+        System.out.println("4) Press '4' to Manage the Rooms Waiting List.");
+        System.out.println("5) Enter 'back' to return to MAIN ADMIN'S MENU.");
+        System.out.print("    Select your option :  ");
+    }
+    
+    public static void adminMenuBooks(Scanner input, HashMap<String,Book> b) {
+        Integer adminOptionBook = 0;
+        adminMenuBooksInfo();
+        String adminOptionBookString = input.nextLine();
+        do {
+            // Check if Option input is either a number or 'back'
+            while (!isNumeric(adminOptionBookString) && !adminOptionBookString.toLowerCase().equals("back")) {
+                adminOptionBookString = userOptionInputError(input,adminOptionBookString);
+            }
+            // IF Option is a number, parse the string as an integer
+            if (isNumeric(adminOptionBookString)) {
+                adminOptionBook = Integer.parseInt(adminOptionBookString);
+            }
+            
+            // Return to Main Admin's Menu
+            if (adminOptionBookString.toLowerCase().equals("back")) {
+                return;
+            }
+            // Student inputs INVALID Menu Option
+            else if (adminOptionBook != 1 && adminOptionBook != 2 && adminOptionBook != 3 && adminOptionBook != 4 && adminOptionBook != 5) {
+                adminOptionBookString = userOptionInputError(input,adminOptionBookString);
+            }
+            // Create a new Book, and add to Book HashMap
+            else if (adminOptionBook == 1){
+                // --> Go to createBook(HashMap<String,Book> b) function <--
+                // --> IMPORTANT: in createRoom function, check it !HashMap.isFull();
+            }
+            // Select and Edit a Current Book
+            else if (adminOptionBook == 2){
+                // --> Go to editBook(HashMap<String,Book> b) function <--
+                // --> IMPORTANT: in editStudent function, check it !HashMap.isEmpty();
+            }
+            // Select and Delete a Current Book
+            else if (adminOptionBook == 3){
+                // --> Go to deleteBook(HashMap<String,Book> b) function <--
+                // --> IMPORTANT: in deleteStudent function, check it !HashMap.isEmpty();
+            }
+            // Go to Book Holders Management Menu
+            else if (adminOptionBook == 4){
+                // --> Go to manageBookHolders(HashMap<String,Book> b) function <--
+            }
+            // Go to Book Waiting List Management Menu
+            else if (adminOptionBook == 5){
+                // --> Go to manageWaitingListBookMenu(HashMap<String,Book> b) function <--
+            } 
+        } while (!adminOptionBookString.toLowerCase().equals("back"));
+    }
+    
+    public static void adminMenuBooksInfo() {
+        System.out.println("\n ===== ADMIN'S MENU - BOOKS ======");
+        System.out.println("\n --- What would you like to do? ---");
+        System.out.println("1) Press '1' to Create a New Book.");
+        System.out.println("2) Press '2' to Edit any Current Books.");
+        System.out.println("2) Press '3' to Delete a Current Book.");
+        System.out.println("3) Press '4' to Manage Current Book Holders.");
+        System.out.println("4) Press '5' to Manage the Books Waiting List.");
+        System.out.println("5) Enter 'back' to return to MAIN ADMIN'S MENU.");
+        System.out.print("    Select your option :  ");
     }
     
     
