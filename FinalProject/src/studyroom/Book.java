@@ -1,30 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package studyroom;
 
 import java.util.LinkedList;
 import java.util.Queue;
 
-/**
- *
- * @author jteet
- */
 public class Book implements LSD {
     /*
     * Data Structure to represent a book
-    * Properties: Author, Title, ISBN, available quantitiy
+    * Properties: Author, Title, ISBN, available quantitiy, Who checked it out, Who's waiting for it after
     */
     
     // Properties of a book
-	protected Integer quantity;
-	protected String title;
-        protected String isbn;
-        protected String author;
-        protected String checkedOutBy;
-	protected Queue<String> waitingList;
+	private Integer quantity;
+	private String title;
+        private String isbn;
+        private String author;
+        private String checkedOutBy;
+	private Queue<String> waitingList;
         
         // Default Constuctor
         public Book() {
