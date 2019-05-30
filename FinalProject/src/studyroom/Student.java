@@ -10,23 +10,23 @@ package studyroom;
  * @author jteet
  */
 class Student implements LSD {
-    private String name;
     private Integer studentID;
-    private String email;
+    private String firstName;
+    private String lastName;
     
     // Default Constructor
     Student() {
-        this.name = null;
         this.studentID = 0;
-        this.email = null;
+        this.firstName = null;
+        this.lastName = null;
     }
     
-    // ----- Name Set and Get -----
-    public void setName(String name) {
-       this.name = name; 
+    // ----- FirstName Set and Get -----
+    public void setFirstName(String firstName) {
+       this.firstName = firstName; 
     }
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
     
     // ----- Student ID Set and Get -----
@@ -37,12 +37,12 @@ class Student implements LSD {
         return studentID;
     }
     
-    // ----- Email Set and Get -----\
-    public void setEmail(String email) {
-        this.email = email;
+    // ----- LastName Set and Get -----\
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
-    public String getEmail() {
-        return email;
+    public String getLastName() {
+        return lastName;
     }
     
     @Override
@@ -53,17 +53,17 @@ class Student implements LSD {
         String[] arrOfStr = kv[1].split(",");
         
         this.studentID = key;
-        this.name = arrOfStr[0];
-        this.email = arrOfStr[1];
+        this.firstName = arrOfStr[0];
+        this.lastName = arrOfStr[1];
     }
     
     @Override
     public String toCSV() {
-        return this.name + ":" + this.studentID + "," + this.email;
+        return this.studentID + ":" + this.firstName + "," + this.lastName;
     }
 
     @Override
     public void display() {
-        System.out.println("Student ID : " + studentID + "\nStudent Name : " + name + "\n Student Email : " + email);
+        System.out.println("Student ID : " + studentID + "\nStudent First Name : " + firstName + "\n Student Last Name : " + lastName);
     }
 }
