@@ -1,0 +1,130 @@
+package reservations;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+
+/**
+ * Driver/test program for studyRoom & reservation classes
+ * which instantiates a study room reservation Data Structure System
+ */
+public class Reservations {
+    
+    private static String readLine() {
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            return stdin.readLine();
+        } catch (IOException e) {
+            System.out.println("Invalid Input");
+        }
+        return null;
+    }
+    
+    /**
+     * Main driver/test function 
+     * 
+     * @param args
+     */
+
+    public static void main(String[] args) {
+      //Instantiate a Study room
+      studyRoom studyRoomObj = new studyRoom();
+      //temp variables needed for later
+      String name;
+      String num;
+      int roomnum;
+      
+      // Main loop
+      while (true) {
+          // Display prompt
+          System.out.println('\n');
+          System.out.println("Welcome to Study Room Reservations:");
+          System.out.println("***********************************");
+          System.out.println("Select from the list below and press Enter:");
+          System.out.println("-------------------------------------------");
+          System.out.println("A. View number of study rooms available");
+          System.out.println("B. Reserve any available study room");
+          System.out.println("C. Reserve a particular study room");
+          System.out.println("D. Cancel a study room reservation");
+          System.out.println("E. Exit");
+          System.out.println('\n');
+          //System.out.println("Build - build some more study rooms");
+          
+          System.out.flush();
+          
+          //Get input
+          String command = readLine();
+          
+          // if user want to quit...
+          if ((command == null) || command.equalsIgnoreCase("E")) {
+              System.out.println("Good Bye");
+              break;
+          }
+          
+          //Reserving any study room available
+          if (command.equalsIgnoreCase("B")) {
+              //prompt for name
+              System.out.print("Please enter your name: ");
+              System.out.flush();
+              name = readLine();
+              roomnum = -1;
+              //if good name provided, try to reserve any study room
+              if (!((name == null) || (name.equals("")))) {
+                  roomnum = studyRoomObj.reserveRoom(name);
+              }
+              //Display feedback
+              if (roomnum == -1) {
+                  System.out.println("No study rooms available");      
+              } else {
+                  System.out.println(name + " has reserved study room " + roomnum);
+              }
+              System.out.println('\n');
+          }
+          
+          //Reserving a particular study room
+          if (command.equalsIgnoreCase("C")) {
+              //prompt for name and study room
+              System.out.print("Please enter your name: ");
+              System.out.flush();
+              name = readLine();
+              System.out.print("Study room 1,2,3,4: ");
+              System.out.flush();
+              num = readLine();
+              // if input was bad, failure reported
+              if ((name == null) || (name.equals("")) || (num == null)) {
+                  roomnum = -1;
+              } else {
+                //convert the String to an int (and catch any failure)
+                try {
+                    roomnum = Integer.parseInt(num);
+                } catch (NumberFormatException e) {
+                    roomnum = -1;
+                }
+              }
+
+              //Display feedback
+              if (!studyRoomObj.reserveRoom(name, roomnum)) {
+                  System.out.println(("Study room ") + (roomnum) + (" is not available"));
+              }
+              else {
+                  System.out.println(name + " has reserved study room " + roomnum);
+              }
+          } else if (command.equalsIgnoreCase("D")) {
+              //prompt for name
+              System.out.print("Please enter your name: ");
+              System.out.flush();
+              name = readLine();
+              //if good name provided, cancel user reservation
+              if (!((name == null) || (name.equals("")))) {
+                  studyRoomObj.cancelreservation(name);
+                  System.out.println(name + " reserved study room has been Canceled.");
+              } else {
+                  System.out.println("Enter another name");
+              }
+          } else if (command.equalsIgnoreCase("A")) {
+              studyRoomObj.printreservation();
+        }
+       }
+    }
+}
