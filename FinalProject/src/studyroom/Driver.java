@@ -13,7 +13,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class StudyRoom {
+public class Driver {
 
     
     public static void main(String[] args) {
@@ -32,7 +32,16 @@ public class StudyRoom {
         // Call Menu
         logInMenu(input,s,r,b);
     }
-    
+
+    public static void logInMenuInfo() {
+        System.out.println("\n ===== LOG IN =====");
+        System.out.println(" --- Welcome to the Wilfred J. Airey Library at Norco College ---");
+        System.out.println(" --- How can we help you today? ---");
+        System.out.println("1) Press '1' to Log In.");
+        System.out.println("2) Press '2' to Register as a New User.");
+        System.out.println("3) Press '3' to Exit the Program.");
+        System.out.print("  Select your option :  ");
+    }
     
     
     public static void logInMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
@@ -81,34 +90,6 @@ public class StudyRoom {
         System.out.print("  Select your option :  ");
         userOptionString = input.nextLine();
         return userOptionString;
-    }
-    
-    public static void logInMenuInfo() {
-        System.out.println("\n ===== LOG IN =====");
-        System.out.println(" --- Welcome to the Wilfred J. Airey Library at Norco College ---");
-        System.out.println(" --- How can we help you today? ---");
-        System.out.println("1) Press '1' to Log In.");
-        System.out.println("2) Press '2' to Register as a New User.");
-        System.out.println("3) Press '3' to Exit the Program.");
-        System.out.print("  Select your option :  ");
-    }
-    
-    public static void saveAll(HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
-        System.out.println(" --- Saving all Databases ---");
-                
-        // Saves all Collections to Text Files
-        saveStudent(s);
-        saveRoom(r);
-        saveBooks(b);
-                
-        System.out.println(" --- Thank you for using our Services! ---" 
-                + "\n --- We hope to see you again soon! ---");
-        System.out.println(" --- Press any key to exit... ---");
-        // Press any Button to end program
-        new Scanner(System.in).nextLine();
-        
-        // Ends Program
-        System.exit(0);
     }
     
     public static void functionLogIn(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
@@ -658,5 +639,23 @@ public class StudyRoom {
                 System.out.println("\n --- BOOKS FILE ERROR --- \n");
             }
         }
+    }
+
+    public static void saveAll(HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+        System.out.println(" --- Saving all Databases ---");
+
+        // Saves all Collections to Text Files
+        saveStudent(s);
+        saveRoom(r);
+        saveBooks(b);
+
+        System.out.println(" --- Thank you for using our Services! ---"
+                + "\n --- We hope to see you again soon! ---");
+        System.out.println(" --- Press any key to exit... ---");
+        // Press any Button to end program
+        new Scanner(System.in).nextLine();
+
+        // Ends Program
+        System.exit(0);
     }
 }

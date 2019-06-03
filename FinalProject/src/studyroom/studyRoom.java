@@ -1,11 +1,11 @@
-package reservations;
+package studyroom;
 
 import java.util.ArrayList;
 
 /**
  *studyRoom is an ArrayList of reservations
  *Users may request and cancel study room it if wanted
- *Ability to increase the number of study rooms  
+ *Ability to increase the number of study rooms
  */
 
 public class studyRoom {
@@ -13,10 +13,10 @@ public class studyRoom {
     //ArrayList tracks current reservation
     private final ArrayList<reservation> rooms;
     private int rnum = 1;
-    
+
     //Constructors, to specify how many rooms to begin with
     reservation reserveObj;
-    
+
     /**
      * Constructor
      */
@@ -27,7 +27,7 @@ public class studyRoom {
             rooms.add(null);
         }
     }
-    
+
     /**
      * Constructor
      * @param numRooms
@@ -39,21 +39,21 @@ public class studyRoom {
             rooms.add(null);
         }
     }
-    
+
     //Increasing the study rooms
     //Returning true on success
     /**
-     * Method for building study rooms 
+     * Method for building study rooms
      * @param num
-     * @return 
+     * @return
      */
-    
+
     public boolean buildRooms(int num) {
         //Makes sure parameter is valid
         if (num <= 0) {
             return false;
         }
-        
+
         //Increase the capacity of the Vector
         rooms.ensureCapacity(rooms.size() + num);
         for (int i = 0; i < num; i++) {
@@ -62,15 +62,15 @@ public class studyRoom {
         //report success
         return true;
     }
-    
+
     //Reserves & returns an avialable studyroom
     //or returns -1 if studyroom is full
     /**
      * Method for reserve study room
      * @param user
-     * @return 
+     * @return
      */
-    
+
     public int reserveRoom(String user) {
         for (int i = 0; i < rooms.size(); i++) {
             if (rooms.get(i) == null) {
@@ -83,16 +83,16 @@ public class studyRoom {
         }
         return -1;
     }
-    
+
     //Reserves a particular room for this user
     //Returns false on failure(eg. study room is already reserved)
     /**
      * Reserve study room with user & study room number
      * @param user
      * @param roomNum
-     * @return 
+     * @return
      */
-    
+
     public boolean reserveRoom(String user, int roomNum) {
         try {
             if (rooms.get(roomNum - 1) == null) {
@@ -106,13 +106,13 @@ public class studyRoom {
         }
         return false;
     }
-    
+
     //Allowing user to cancel reservation
     /**
      * Canceling reservation
      * @param user
      */
-    
+
     public void cancelreservation(String user) {
         for (int i = 0; i < rooms.size(); i++) {
             if (rooms.get(i) != null) {
@@ -122,7 +122,7 @@ public class studyRoom {
             }
         }
     }
-    
+
     // Displays current, total number and vacancies of reservations
     /**
      * Reservation printing
@@ -137,4 +137,3 @@ public class studyRoom {
         }
     }
 }
-
