@@ -204,7 +204,6 @@ public class Driver {
         String studentOptionString = input.nextLine();
         
         //Main Loop
-        do {
             //---Display promt --- 
             System.out.print(" \n");
             System.out.println(" ===== Student's Menu =====");
@@ -217,28 +216,11 @@ public class Driver {
             System.out.println("   --- Press #6 to check a book back in.");
             System.out.println("   --- Enter #7 to return to Student's Menu.");
             System.out.println("   --- Select your option:  ");
-            
-            
-            // Check if Option input is either a number or 'back'
-            while (!isNumeric(studentOptionString) && !studentOptionString.toLowerCase().equals("back")) {
-                studentOptionString = userOptionInputError(input,studentOptionString);
-            }
-            // IF Option is a number, parse the string as an integer
-            if (isNumeric(studentOptionString)) {
-                studentOption = Integer.parseInt(studentOptionString);
-            }
-            // Return to Log In
-            if (studentOptionString.toLowerCase().equals("back")) {
-                return;
-            }
-            // Student inputs INVALID Menu Option
-            else if (studentOption != 1 && studentOption != 2 && studentOption != 3 && studentOption != 4 && studentOption !=5 && studentOption !=6) {
-                studentOptionString = userOptionInputError(input,studentOptionString);
-            }           
+
             // Go to ROOM view-AVAILABLE
             switch (studentOption) {
                 case 1:
-                    
+
                     break;
                 case 2:
                     //prompt for name
@@ -254,7 +236,8 @@ public class Driver {
                         System.out.println("No study rooms available");
                     } else {
                         System.out.println(name + " has reserved study room " + roomnum);
-                    }     System.out.println('\n');
+                    }
+                    System.out.println('\n');
                     break;
                 case 3:
                     //prompt for name and study room
@@ -277,10 +260,10 @@ public class Driver {
                     }      //Display feedback
                     if (!studyRoomObj.reserveRoom(name, roomnum)) {
                         System.out.println(("Study room ") + (roomnum) + (" is not available"));
-                    }
-                    else {
+                    } else {
                         System.out.println(name + " has reserved study room " + roomnum);
-                    }     break;
+                    }
+                    break;
                 case 4:
                     //prompt for name
                     System.out.print("Please enter your name: ");
@@ -294,19 +277,19 @@ public class Driver {
                         System.out.println("Enter another name");
                     }
                     break;
-            // Go to BOOK CHECKOUT Function <--
+                // Go to BOOK CHECKOUT Function <--
                 case 5:
                     break;
-            // Go to BOOK CHECKIN Function <--
+                // Go to BOOK CHECKIN Function <--
                 case 6:
                     break;
                 case 7:
                     break;
-                default: System.out.println("Invalid entry. Please try!");
+                default:
+                    System.out.println("Invalid entry. Please try!");
                     break;
             }
-        } while (!studentOptionString.toLowerCase().equals("back"));
-
+        }
     }
 
     //========================================================== ADMIN METHODS ========================================
@@ -723,4 +706,3 @@ public class Driver {
 //    }
 //
 
-}
