@@ -1,35 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package studyroom;
 
-/**
- *
- * @author jteet
- */
+
 class Student implements LSD {
+    
     private Integer studentID;
     private String firstName;
     private String lastName;
     
-    // Default Constructor
+    //Default Constructor
     Student() {
         this.studentID = 0;
         this.firstName = null;
         this.lastName = null;
     }
     
-    // ----- FirstName Set and Get -----
+    //---- FirstName Set and Get ----
     public void setFirstName(String firstName) {
-       this.firstName = firstName; 
+        this.firstName = firstName;
     }
+    
     public String getFirstName() {
         return firstName;
     }
     
-    // ----- Student ID Set and Get -----
+    //----- Student ID Set and Get ----
     public void setStudentID(Integer studentID) {
         this.studentID = studentID;
     }
@@ -37,7 +31,7 @@ class Student implements LSD {
         return studentID;
     }
     
-    // ----- LastName Set and Get -----\
+    //---- LastName Set and Get ----
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
@@ -48,7 +42,7 @@ class Student implements LSD {
     @Override
     public void fromCSV (String CSV) {
         String[] kv = CSV.split(":");
-        Integer key = Integer.parseInt(kv[0]);
+        Integer key = Integer.parseInt(",");
         
         String[] arrOfStr = kv[1].split(",");
         
@@ -61,9 +55,9 @@ class Student implements LSD {
     public String toCSV() {
         return this.studentID + ":" + this.firstName + "," + this.lastName;
     }
-
+    
     @Override
     public void display() {
         System.out.println("Student ID : " + studentID + "\nStudent First Name : " + firstName + "\n Student Last Name : " + lastName);
-    }
+    }    
 }

@@ -1,62 +1,139 @@
 package studyroom;
 
-public class Room implements LSD {
-    private int room;
-    private boolean isVacant;
+import java.util.ArrayList;
 
+class Room {
+    
+    
+    //Instance variable
+    //ArrayList tracks current reservation
+    private ArrayList<reservation> rooms;
+    private int rnum = 1;
+    
+    //Constructors, to specify how many rooms to begin with
+    reservation reserveObj;
+    
+    /**
+     * Constructor
+     */
     public Room() {
-        room = 0;
-        isVacant = true;
-    }
-
-    public Room(int room, boolean isVacant) {
-        this.room = room;
-        this.isVacant = isVacant;
-    }
-
-    public void displayVanacy() {
-        if(isVacant = true)
-            System.out.println("Study Room " + room + ": Vacant");
-        else
-            System.out.println("Study Room " + room + ": Occupied");
-    }
-
-    public int getRoom() {
-        return room;
-    }
-
-    public void setRoom(int room) {
-        this.room = room;
-    }
-
-    public boolean isVacant() {
-        return isVacant;
-    }
-
-    public void setVacant(boolean vacant) {
-        isVacant = vacant;
+        rooms = new ArrayList<>();
+        rooms.ensureCapacity(1);
+        for (int i = 0; i < 3; i++) {
+            rooms.add(null);
+        }
     }
     
-    @Override
-    public String toString() {
-        return this.room + "," + this.isVacant;
+    /**
+     * Constructor
+     * @param numRooms
+     */
+    public Room(int numRooms) {
+        rooms = new ArrayList<>();
+        rooms.ensureCapacity(numRooms);
+        for (int i = 0; i < numRooms; i++) {
+            rooms.add(null);
+        }
+    }
+    
+    //--- Increasing the study rooms ---
+    //Returning true on success
+    /**
+     * Method for building study rooms 
+     * @param num
+     * @return 
+     */
+    
+    public boolean buildRooms(int num) {
+        //Makes sure parameter is valid
+        if (num <= 0) {
+            return false;
+        }
+        
+        //Increase the capacity of the Vector
+        rooms.ensureCapacity(rooms.size() + num);
+        for (int i = 0; i < num; i++) {
+            rooms.add(null);
+        }
+        //report success
+        return true;
+    }
+    
+    // --- Reserves & returns an avialable studyroom ---
+    //or returns -1 if studyroom is full
+    /**
+     * Method for reserve study room
+     * @param user
+     * @return 
+     */
+    
+    public int reserveRoom(String user) {
+        for (int i = 0; i < rooms.size(); i++) {
+            if (rooms.get(i) == null) {
+                reserveObj = new reservation(user);
+                reserveObj.setRoom(rnum);
+                rooms.set(i, reserveObj);
+                rnum++;
+                return rnum - 1;
+            }
+        }
+        return -1;
+    }
+    
+    //--- Reserves a particular room for this user ---
+    //Returns false on failure(eg. study room is already reserved)
+    /**
+     * Reserve study room with user & study room number
+     * @param user
+     * @param roomNum
+     * @return 
+     */
+    
+    public boolean reserveRoom(String user, int roomNum) {
+        try {
+            if (rooms.get(roomNum - 1) == null) {
+                reserveObj = new reservation(user,roomNum);
+                rooms.set(roomNum - 1,reserveObj);
+                rnum++;
+                return true;
+            }
+        } catch (Exception e) {
+            return false;
+        }
+        return false;
+    }
+    
+    //--- Allowing user to cancel reservation ---
+    /**
+     * Canceling reservation
+     * @param user
+     */
+    
+    public void cancelreservation(String user) {
+        for (int i = 0; i < rooms.size(); i++) {
+            if (rooms.get(i) != null) {
+                if (rooms.get(i).getName().equals(user)) {
+                    rooms.set(i, null);
+                }
+            }
+        }
+    }
+    
+    // --- Displays current, total number and vacancies of reservations ---
+    /**
+     * Reservation printing
+     */
+    public void printreservation() {
+        for (int i = 0; i < rooms.size(); i++) {
+            if (rooms.get(i) != null) {
+                System.out.println(rooms.get(i));
+            } else {
+                System.out.println(("Study room ") + (i + 1 ) + (" is available"));
+            }
+        }
     }
 
-    @Override
-    public void fromCSV(String CSV) {
-        String[] arrOfStr = CSV.split(",");
-        this.room = Integer.parseInt(arrOfStr[0]);
-        this.isVacant = Boolean.parseBoolean(arrOfStr[1]);  
+    void fromCSV(String line) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
-    @Override
-    public String toCSV() {
-        return toString();
-    }
-
-    @Override
-    public void display() {
-        System.out.println("Room # : " + room + "\nAvailability : " + isVacant);
-    }
-
 }
