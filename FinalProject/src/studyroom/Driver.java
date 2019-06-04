@@ -215,7 +215,7 @@ public class Driver {
             System.out.println("   --- Press #4 to cancel a study room.");
             System.out.println("   --- Press #5 to check out a book.");
             System.out.println("   --- Press #6 to check a book back in.");
-            System.out.println("   --- Enter 'back' to return to Student's Menu.");
+            System.out.println("   --- Enter #7 to return to Student's Menu.");
             System.out.println("   --- Select your option:  ");
             
             
@@ -300,7 +300,9 @@ public class Driver {
             // Go to BOOK CHECKIN Function <--
                 case 6:
                     break;
-                default:
+                case 7:
+                    break;
+                default: System.out.println("Invalid entry. Please try!");
                     break;
             }
         } while (!studentOptionString.toLowerCase().equals("back"));
