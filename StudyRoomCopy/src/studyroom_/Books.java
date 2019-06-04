@@ -2,20 +2,98 @@ package studyroom_;
 
 import java.util.Queue;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
-class Book {
+public class Books {
+     /*
+    * Data Structure to represent a book
+    * Properties: Author, Title, ISBN, available quantitiy
+    */
+        private class Book
+        {
+	// Properties of a book
+	private int quantity;
+	private String title;
+        private String isbn;
+        private String author;
+        private String checkedOutBy;
+	private Queue<String> waitingList;
+
+        //Constructor
+	public Book(int quantity, String title, String isbn, String author)
+        {
+            this.quantity = quantity;
+            this.title = title;
+            this.isbn = isbn;
+            this.author = author;
+            checkedOutBy = null;
+            waitingList = new LinkedList<String>();
+	}
+
+        // Getters
+        public int getQuantity()
+        {
+            return quantity; 
+        }
+	public String getTitle()
+        { 
+            return title; 
+        }
+	public String getISBN() 
+        { 
+            return isbn; 
+        }
+        public String getAuthor() 
+        {
+            return author; 
+        }
+	public String getLastRenter() 
+        {
+            return checkedOutBy; 
+        }
+	public Queue<String> getWaitingList() 
+        {
+            return waitingList;
+        }
+
+	// Setters
+        public void setQuantity(int quantity)
+        { 
+            this.quantity = quantity;
+        }
+        public void setTitle(String title) 
+        { 
+           this.title = title; 
+        }
+        public void setISBN(String isbn) 
+        { 
+            this.isbn = isbn; 
+        }
+        public void setAuthor(String author) 
+        { 
+            this.author = author;
+        }
+        public void setRenter(String checkedOutBy)
+        { 
+            this.checkedOutBy = checkedOutBy; 
+        }
+        public void adjustWaitingList(Queue<String> updatedWaitingList)
+        { 
+            waitingList = updatedWaitingList;
+        }
+    }
     
     // HashMap, mapping a book to it's title
     private HashMap<String, Book> books;
     
-    public Book() { 
-        books = new HashMap<>(); 
+    public Books() { 
+        books = new HashMap<String, Book>(); 
     }
 
     // Populate the HashMap
     public String addBook(int quantity, String title, String isbn, String author) {
-        Book newBook = newBook(quantity, title, isbn, author);
+        Book newBook = new Book(quantity, title, isbn, author);
 	if (books.containsKey(title)) {
             return "Book is already contained.";
 	} else {

@@ -20,7 +20,7 @@ public class StudyRoom_ {
         // Input and Collections CREATION
         HashMap <Integer,Student> s = new HashMap();
         Queue <Room> r = new LinkedList<>();
-        HashMap <String, Book> b = new HashMap();
+        HashMap <String, Books> b = new HashMap();
         Scanner input = new Scanner(System.in);
         
         // Loading up Collections
@@ -34,7 +34,7 @@ public class StudyRoom_ {
     
     
     
-    public static void logInMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+    public static void logInMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         Integer userOption = null;
         do {
             logInMenuInfo(); 
@@ -90,7 +90,7 @@ public class StudyRoom_ {
         System.out.print(" --- Select your option:  ");
     }
     
-    public static void saveAll(HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+    public static void saveAll(HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         System.out.println(" --- Saving all Databases ---");
                 
         // Saves all Collections to Text Files
@@ -108,7 +108,7 @@ public class StudyRoom_ {
         System.exit(0);
     }
     
-    public static void functionLogIn(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+    public static void functionLogIn(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         Integer userStudentID = 0;
         String userStudentIDString = "";
         do {
@@ -240,7 +240,7 @@ public class StudyRoom_ {
 //        System.out.print("  Select your option :  ");
 //    }
     
-    public static void studentMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+    public static void studentMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         Integer studentOption = 0;
         //Instantiate a Study room
         Room studyRoomObj = new Room();
@@ -577,7 +577,7 @@ public class StudyRoom_ {
         } catch (FileNotFoundException ex) {} 
     }
     
-    private static void loadBooks (HashMap <String,Book> b) {   // KEY = Book Title
+    private static void loadBooks (HashMap <String,Books> b) {   // KEY = Book Title
         File  databaseBooks = new File("databaseBooks.txt");
         FileReader read = null;
         
@@ -589,7 +589,7 @@ public class StudyRoom_ {
             String line = null;
             try {
                 while((line = br.readLine()) != null) {
-                    Book blank  = new Book();
+                    Books blank  = new Books();
                     blank.fromCSV(line);
                     b.put(blank.getTitle(),blank);
                 }
@@ -683,7 +683,7 @@ public class StudyRoom_ {
     
     // ===== Save Books Database (HashMap) =====
     
-    private static void saveBooks(HashMap <String,Book> b) { // Saves HashMaps ; KEY = Book Titlex
+    private static void saveBooks(HashMap <String,Books> b) { // Saves HashMaps ; KEY = Book Titlex
         // ===== FILE CREATION =====
         FileReader read = null;
         File databaseBooks = new File("databaseBooks.txt");
@@ -723,7 +723,7 @@ public class StudyRoom_ {
 
     
 
-    private static void adminMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String, Book> b) {
+    private static void adminMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String, Books> b) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
