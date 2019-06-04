@@ -49,4 +49,12 @@ class Student implements LSD {
     public void display() {
         
     }
+
+    void setFirstName(String registerStudentFirstName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    void setLastName(String registerStudentLastName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
