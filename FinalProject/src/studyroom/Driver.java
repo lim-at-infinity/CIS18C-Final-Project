@@ -24,9 +24,9 @@ public class Driver {
         Scanner input = new Scanner(System.in);
         
         // Loading up Collections
-        loadStudent(s);
-        loadRoom(r);
-        loadBooks(b);
+//        loadStudent(s);
+//        loadRoom(r);
+//        loadBooks(b);
         
         // Call Menu
         logInMenu(input,s,r,b);
@@ -94,9 +94,9 @@ public class Driver {
         System.out.println(" --- Saving all Databases ---");
 
         // Saves all Collections to Text Files
-        saveStudent(s);
-        saveRoom(r);
-        saveBooks(b);
+//        saveStudent(s);
+//        saveRoom(r);
+//        saveBooks(b);
 
         System.out.println(" --- Thank you for using our Services! ---"
                 + "\n --- We hope to see you again soon! ---");
@@ -130,7 +130,7 @@ public class Driver {
         
             // Admin's Log In
             if (userStudentIDString.toLowerCase().equals("admin")) {
-                adminMenu(input,s,r,b);
+                //adminMenu(input,s,r,b);
             }
             // Return to Log In Menu
             else if (userStudentIDString.toLowerCase().equals("back")) {
@@ -310,417 +310,417 @@ public class Driver {
     }
 
     //========================================================== ADMIN METHODS ========================================
-
-    public static void adminMenuInfo(){
-        System.out.println("\n ===== ADMIN'S MENU - MAIN =====");
-        System.out.println("\n --- Which Collection would you like to access? ---");
-        System.out.println("1) Press '1' to access Student Collection.");
-        System.out.println("2) Press '2' to access Rooms Collection.");
-        System.out.println("3) Press '3' to access Books Collection.");
-        System.out.println("4) Enter 'back' to return to Log In.");
-        System.out.print("  Select your option :  ");
-    }
-
-    public static void adminMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
-        Integer adminOption = 0;
-        adminMenuInfo();
-        String adminOptionString = input.nextLine();
-        do {
-            // Check if Option input is either a number or 'back'
-            while(!isNumeric(adminOptionString) && !adminOptionString.toLowerCase().equals("back")) {
-                adminOptionString = userOptionInputError(input,adminOptionString);
-            }
-            // IF Option is a number, parse the string as an integer
-            if (isNumeric(adminOptionString)) {
-                adminOption = Integer.parseInt(adminOptionString);
-            }
-
-            // Return to Log In Menu
-            if (adminOptionString.toLowerCase().equals("back")) {
-                return;
-            }
-            // Admin inputs INVALID Menu Option
-            else if (adminOption != 1 && adminOption != 2 && adminOption != 3) {
-                adminOptionString = userOptionInputError(input,adminOptionString);
-            }
-            // Access to Students Collection
-            else if (adminOption == 1) {
-                adminMenuStudents(input, s);
-                break;
-            }
-            // Access to Rooms Collection
-            else if (adminOption == 2) {
-                adminMenuRooms(input,r);
-            }
-            // Access to Books Collection
-            else if (adminOption == 3) {
-                adminMenuBooks(input,b);
-            }
-
-        } while (!adminOptionString.toLowerCase().equals("back"));
-    }
-
-    public static void adminMenuStudentsInfo() {
-        System.out.println("\n ===== ADMIN'S MENU - STUDENTS ======");
-        System.out.println("\n --- What would you like to do? ---");
-        System.out.println("1) Press '1' to Create a New Student Profile.");
-        System.out.println("2) Press '2' to Edit any Current Student Profiles.");
-        System.out.println("3) Press '3' to Delete any Student Profile.");
-        System.out.println("4) Enter 'back' to return to MAIN ADMIN'S MENU.");
-        System.out.print("    Select your option :  ");
-    }
-
-    public static void adminMenuStudents(Scanner input, HashMap<Integer,Student> s) {
-        Integer adminOptionStudent = 0;
-        adminMenuStudentsInfo();
-        String adminOptionStudentString = input.nextLine();
-        do {
-            // Check if Option input is either a number or 'back'
-            while (!isNumeric(adminOptionStudentString) && !adminOptionStudentString.toLowerCase().equals("back")) {
-                adminOptionStudentString = userOptionInputError(input,adminOptionStudentString);
-            }
-            // IF Option is a number, parse the string as an integer
-            if (isNumeric(adminOptionStudentString)) {
-                adminOptionStudent = Integer.parseInt(adminOptionStudentString);
-            }
-
-            // Return to Main Admin's Menu
-            if (adminOptionStudentString.toLowerCase().equals("back")) {
-                return;
-            }
-            // Student inputs INVALID Menu Option
-            else if (adminOptionStudent != 1 && adminOptionStudent != 2 && adminOptionStudent != 3) {
-                adminOptionStudentString = userOptionInputError(input,adminOptionStudentString);
-            }
-            // Create a new Student Profile, and add to Student HashMap
-            else if (adminOptionStudent == 1){
-                // --> Go to createStudent(HashMap<Integer,Student> s) function <--
-                // --> IMPORTANT: in createStudent function, check it !HashMap.isFull();
-            }
-            // Select and Edit a Current Student Profile
-            else if (adminOptionStudent == 2){
-                // --> Go to editStudent(HashMap<Integer,Student> s) function <--
-                // --> IMPORTANT: in editStudent function, check it !HashMap.isEmpty();
-            }
-            // Select and Delete a Current Student Profile
-            else if (adminOptionStudent == 3){
-                // --> Go to deleteStudent(HashMap<Integer,Student> s) function <--
-                // --> IMPORTANT: in deleteStudent function, check it !HashMap.isEmpty();
-            }
-
-        } while (!adminOptionStudentString.toLowerCase().equals("back"));
-    }
-
-    public static void adminMenuRoomsInfo() {
-        System.out.println("\n ===== ADMIN'S MENU - ROOMS ======");
-        System.out.println("\n --- What would you like to do? ---");
-        System.out.println("1) Press '1' to Create a New Room.");
-        System.out.println("2) Press '2' to Delete a Current Room.");
-        System.out.println("3) Press '3' to Manage Current Rooms.");
-        System.out.println("4) Press '4' to Manage the Rooms Waiting List.");
-        System.out.println("5) Enter 'back' to return to MAIN ADMIN'S MENU.");
-        System.out.print("    Select your option :  ");
-    }
-
-    public static void adminMenuRooms(Scanner input, Queue<Room> r){
-        Integer adminOptionRoom = 0;
-        adminMenuRoomsInfo();
-        String adminOptionRoomString = input.nextLine();
-        do {
-            // Check if Option input is either a number or 'back'
-            while (!isNumeric(adminOptionRoomString) && !adminOptionRoomString.toLowerCase().equals("back")) {
-                adminOptionRoomString = userOptionInputError(input,adminOptionRoomString);
-            }
-            // IF Option is a number, parse the string as an integer
-            if (isNumeric(adminOptionRoomString)) {
-                adminOptionRoom = Integer.parseInt(adminOptionRoomString);
-            }
-
-            // Return to Main Admin's Menu
-            if (adminOptionRoomString.toLowerCase().equals("back")) {
-                return;
-            }
-            // Student inputs INVALID Menu Option
-            else if (adminOptionRoom != 1 && adminOptionRoom != 2 && adminOptionRoom != 3 && adminOptionRoom != 4) {
-                adminOptionRoomString = userOptionInputError(input,adminOptionRoomString);
-            }
-            // Create a new Room, and add to Room Queue
-            else if (adminOptionRoom == 1){
-                // --> Go to createRoom(Queue<Room> r) function <--
-                // --> IMPORTANT: in createRoom function, check it !Queue.isFull();
-            }
-            // Select and Delete a Current Room
-            else if (adminOptionRoom == 2){
-                // --> Go to deleteStudent(Queue<Room> r) function <--
-                // --> IMPORTANT: in deleteStudent function, check it !Queue.isEmpty();
-            }
-            // Go to Rooms Management Menu
-            else if (adminOptionRoom == 3){
-                // --> Go to manageRoomsMenu(Queue<Room> r) function <--
-            }
-            // Go to Rooms Waiting List Management Menu
-            else if (adminOptionRoom == 4){
-                // --> Go to manageWaitingListRoomsMenu(Queue<Room> r) function <--
-            }
-
-        } while (!adminOptionRoomString.toLowerCase().equals("back"));
-    }
-
-    public static void adminMenuBooksInfo() {
-        System.out.println("\n ===== ADMIN'S MENU - BOOKS ======");
-        System.out.println("\n --- What would you like to do? ---");
-        System.out.println("1) Press '1' to Create a New Books.");
-        System.out.println("2) Press '2' to Edit any Current Books.");
-        System.out.println("2) Press '3' to Delete a Current Books.");
-        System.out.println("3) Press '4' to Manage Current Books Holders.");
-        System.out.println("4) Press '5' to Manage the Books Waiting List.");
-        System.out.println("5) Enter 'back' to return to MAIN ADMIN'S MENU.");
-        System.out.print("    Select your option :  ");
-    }
-
-    public static void adminMenuBooks(Scanner input, HashMap<String,Books> b) {
-        Integer adminOptionBook = 0;
-        adminMenuBooksInfo();
-        String adminOptionBookString = input.nextLine();
-        do {
-            // Check if Option input is either a number or 'back'
-            while (!isNumeric(adminOptionBookString) && !adminOptionBookString.toLowerCase().equals("back")) {
-                adminOptionBookString = userOptionInputError(input,adminOptionBookString);
-            }
-            // IF Option is a number, parse the string as an integer
-            if (isNumeric(adminOptionBookString)) {
-                adminOptionBook = Integer.parseInt(adminOptionBookString);
-            }
-
-            // Return to Main Admin's Menu
-            if (adminOptionBookString.toLowerCase().equals("back")) {
-                return;
-            }
-            // Student inputs INVALID Menu Option
-            else if (adminOptionBook != 1 && adminOptionBook != 2 && adminOptionBook != 3 && adminOptionBook != 4 && adminOptionBook != 5) {
-                adminOptionBookString = userOptionInputError(input,adminOptionBookString);
-            }
-            // Create a new Books, and add to Books HashMap
-            else if (adminOptionBook == 1){
-                // --> Go to createBook(HashMap<String,Books> b) function <--
-                // --> IMPORTANT: in createRoom function, check it !HashMap.isFull();
-            }
-            // Select and Edit a Current Books
-            else if (adminOptionBook == 2){
-                // --> Go to editBook(HashMap<String,Books> b) function <--
-                // --> IMPORTANT: in editStudent function, check it !HashMap.isEmpty();
-            }
-            // Select and Delete a Current Books
-            else if (adminOptionBook == 3){
-                // --> Go to deleteBook(HashMap<String,Books> b) function <--
-                // --> IMPORTANT: in deleteStudent function, check it !HashMap.isEmpty();
-            }
-            // Go to Books Holders Management Menu
-            else if (adminOptionBook == 4){
-                // --> Go to manageBookHolders(HashMap<String,Books> b) function <--
-            }
-            // Go to Books Waiting List Management Menu
-            else if (adminOptionBook == 5){
-                // --> Go to manageWaitingListBookMenu(HashMap<String,Books> b) function <--
-            }
-        } while (!adminOptionBookString.toLowerCase().equals("back"));
-    }
-
-    // ===== Load Student HashMap =====
-
-    private static void loadStudent (HashMap <Integer,Student> s) {  // KEY = StudentID
-        File  databaseStudent = new File("databaseStudent.txt");
-        FileReader read = null;
-
-        // File Exceptions
-        try {
-            read = new FileReader(databaseStudent);
-            BufferedReader br = new BufferedReader(read);
-
-            String line = null;
-            try {
-                while((line = br.readLine()) != null) {
-                    Student blank  = new Student();
-                    blank.fromCSV(line);
-                    s.put(blank.getStudentID(),blank);
-                }
-            } catch (IOException ex) {
-                System.out.println("STUDENT Binary Files are NOT supported");
-            }
-        } catch (FileNotFoundException ex) {}
-    }
-
-    // ===== Load Student Queue =====
-
-    private static void loadRoom (Queue<Room> r) {
-        File  databaseRooms = new File("databaseRooms.txt");
-        FileReader read = null;
-
-        // File Exceptions
-        try {
-            read = new FileReader(databaseRooms);
-            BufferedReader br = new BufferedReader(read);
-
-            String line = null;
-            try {
-                while((line = br.readLine()) != null) {
-                    Room blank  = new Room();
-                    blank.fromCSV(line);
-                    r.add(blank);
-                }
-            } catch (IOException ex) {
-                System.out.println("ROOMS Binary Files are NOT supported");
-            }
-        } catch (FileNotFoundException ex) {}
-    }
-
-    private static void loadBooks (HashMap <String,Books> b) {   // KEY = Books Title
-        File  databaseBooks = new File("databaseBooks.txt");
-        FileReader read = null;
-
-        // File Exceptions
-        try {
-            read = new FileReader(databaseBooks);
-            BufferedReader br = new BufferedReader(read);
-
-            String line = null;
-            try {
-                while((line = br.readLine()) != null) {
-                    Books blank  = new Books();
-                    blank.fromCSV(line);
-                    b.put(blank.getTitle(),blank);
-                }
-            } catch (IOException ex) {
-                System.out.println("BOOKS Binary Files are NOT supported");
-            }
-        } catch (FileNotFoundException ex) {}
-    }
-
-
-    // ===== Save Student Database (HashMap) =====
-
-    private static void saveStudent(HashMap <Integer,Student> s) { // Saves HashMaps ; KEY = StudentID
-        // ===== FILE CREATION =====
-        FileReader read = null;
-        File databaseStudent = new File("databaseStudent.txt");
-
-        // ===== FILE SAVE FOR STUDENT DATABASE =====
-        try {
-            read = new FileReader(databaseStudent);
-            try {
-                System.out.println("Saving to databaseStudent.txt file\n"); // Tells user the program is saving the Student Database
-                FileWriter writer = null; // Creates new File Writer
-                writer = new FileWriter("databaseStudent.txt");
-                BufferedWriter out = new BufferedWriter(writer);
-
-                for (Iterator<Integer> it = s.keySet().iterator(); it.hasNext();) {
-                    Integer curr = it.next();
-                    out.write(s.get(curr).toCSV()); // Each iteration of student is being saved
-                }
-                out.close(); // Stops the File Writer
-            } catch (IOException ex2) {
-                System.out.println("\n --- STUDENT FILE ERROR --- \n");
-            }
-        } catch (FileNotFoundException ex) { // IF the file doesn't exist...
-            try {
-                System.out.println("Created new file called databaseStudent.txt\n"); // Tells user the program has NOW created the new Student Database
-                FileWriter writer = null; // Creates new File Writer
-                writer = new FileWriter("databaseStudent.txt");
-                BufferedWriter out = new BufferedWriter(writer);
-
-                for (Iterator<Integer> it = s.keySet().iterator(); it.hasNext();) {
-                    Integer curr = it.next();
-                    out.write(s.get(curr).toCSV()); // Each iteration of student is being saved
-                }
-                out.close(); // Stops the File Writer
-            } catch (IOException ex2) {
-                System.out.println("\n --- STUDENT FILE ERROR --- \n");
-            }
-        }
-    }
-
-
-    // ===== Save Room Database (Queue) =====
-
-    private static void saveRoom(Queue <Room> r){ // Saves Queues
-        // ===== FILE CREATION =====
-        FileReader read = null;
-        File databaseRooms = new File("databaseRooms.txt");
-
-        // ===== FILE SAVE FOR ROOMS DATABASE =====
-        try {
-            read = new FileReader(databaseRooms);
-            try {
-                System.out.println("Saving to databaseRooms.txt file\n"); // Tells user the program is saving the Room Database
-                FileWriter writer = null; // Creates new File Writer
-                writer = new FileWriter("databaseRooms.txt");
-                BufferedWriter out = new BufferedWriter(writer);
-
-                for (int i = 0; i < r.toArray().length; i++) {
-                    out.write(r.toArray()[i].toString()); // Each iteration of Room is being saved
-                }
-                out.close(); // Stops the File Writer
-            } catch (IOException ex2) {
-                System.out.println("\n --- ROOMS FILE ERROR --- \n");
-            }
-        } catch (FileNotFoundException ex) { // IF the file doesn't exist...
-            try {
-                System.out.println("Created new file called databaseRooms.txt\n"); // Tells user the program has NOW created the new Student Database
-                FileWriter writer = null; // Creates new File Writer
-                writer = new FileWriter("databaseRooms.txt");
-                BufferedWriter out = new BufferedWriter(writer);
-
-                for (int i = 0; i < r.toArray().length; i++) {
-                    out.write(r.toArray()[i].toString()); // Each iteration of Room is being saved
-                }
-                out.close(); // Stops the File Writer
-            } catch (IOException ex2) {
-                System.out.println("\n --- ROOMS FILE ERROR --- \n");
-            }
-        }
-    }
-
-    // ===== Save Books Database (HashMap) =====
-
-    private static void saveBooks(HashMap <String,Books> b) { // Saves HashMaps ; KEY = Books Titlex
-        // ===== FILE CREATION =====
-        FileReader read = null;
-        File databaseBooks = new File("databaseBooks.txt");
-
-        // ===== FILE SAVE FOR BOOKS DATABASE =====
-        try {
-            read = new FileReader(databaseBooks);
-            try {
-                System.out.println("Saving to databaseBooks.txt file\n"); // Tells user the program is saving the Student Database
-                FileWriter writer = null; // Creates new File Writer
-                writer = new FileWriter("databaseBooks.txt");
-                BufferedWriter out = new BufferedWriter(writer);
-
-                for (Iterator<String> it = b.keySet().iterator(); it.hasNext();) {
-                    String curr = it.next();
-                    out.write(b.get(curr).toCSV()); // Each iteration of student is being saved
-                }
-                out.close(); // Stops the File Writer
-            } catch (IOException ex2) {
-                System.out.println("\n --- BOOKS FILE ERROR --- \n");
-            }
-        } catch (FileNotFoundException ex) { // IF the file doesn't exist...
-            try {
-                System.out.println("Created new file called databaseBooks.txt\n"); // Tells user the program has NOW created the new Student Database
-                FileWriter writer = null; // Creates new File Writer
-                writer = new FileWriter("databaseBooks.txt");
-                BufferedWriter out = new BufferedWriter(writer);
-
-                for (Iterator<String> it = b.keySet().iterator(); it.hasNext();) {
-                    String curr = it.next();
-                    out.write(b.get(curr).toCSV()); // Each iteration of student is being saved
-                }
-                out.close(); // Stops the File Writer
-            } catch (IOException ex2) {
-                System.out.println("\n --- BOOKS FILE ERROR --- \n");
-            }
-        }
-    }
-    
+//
+//    public static void adminMenuInfo(){
+//        System.out.println("\n ===== ADMIN'S MENU - MAIN =====");
+//        System.out.println("\n --- Which Collection would you like to access? ---");
+//        System.out.println("1) Press '1' to access Student Collection.");
+//        System.out.println("2) Press '2' to access Rooms Collection.");
+//        System.out.println("3) Press '3' to access Books Collection.");
+//        System.out.println("4) Enter 'back' to return to Log In.");
+//        System.out.print("  Select your option :  ");
+//    }
+//
+//    public static void adminMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
+//        Integer adminOption = 0;
+//        adminMenuInfo();
+//        String adminOptionString = input.nextLine();
+//        do {
+//            // Check if Option input is either a number or 'back'
+//            while(!isNumeric(adminOptionString) && !adminOptionString.toLowerCase().equals("back")) {
+//                adminOptionString = userOptionInputError(input,adminOptionString);
+//            }
+//            // IF Option is a number, parse the string as an integer
+//            if (isNumeric(adminOptionString)) {
+//                adminOption = Integer.parseInt(adminOptionString);
+//            }
+//
+//            // Return to Log In Menu
+//            if (adminOptionString.toLowerCase().equals("back")) {
+//                return;
+//            }
+//            // Admin inputs INVALID Menu Option
+//            else if (adminOption != 1 && adminOption != 2 && adminOption != 3) {
+//                adminOptionString = userOptionInputError(input,adminOptionString);
+//            }
+//            // Access to Students Collection
+//            else if (adminOption == 1) {
+//                adminMenuStudents(input, s);
+//                break;
+//            }
+//            // Access to Rooms Collection
+//            else if (adminOption == 2) {
+//                adminMenuRooms(input,r);
+//            }
+//            // Access to Books Collection
+//            else if (adminOption == 3) {
+//                adminMenuBooks(input,b);
+//            }
+//
+//        } while (!adminOptionString.toLowerCase().equals("back"));
+//    }
+//
+//    public static void adminMenuStudentsInfo() {
+//        System.out.println("\n ===== ADMIN'S MENU - STUDENTS ======");
+//        System.out.println("\n --- What would you like to do? ---");
+//        System.out.println("1) Press '1' to Create a New Student Profile.");
+//        System.out.println("2) Press '2' to Edit any Current Student Profiles.");
+//        System.out.println("3) Press '3' to Delete any Student Profile.");
+//        System.out.println("4) Enter 'back' to return to MAIN ADMIN'S MENU.");
+//        System.out.print("    Select your option :  ");
+//    }
+//
+//    public static void adminMenuStudents(Scanner input, HashMap<Integer,Student> s) {
+//        Integer adminOptionStudent = 0;
+//        adminMenuStudentsInfo();
+//        String adminOptionStudentString = input.nextLine();
+//        do {
+//            // Check if Option input is either a number or 'back'
+//            while (!isNumeric(adminOptionStudentString) && !adminOptionStudentString.toLowerCase().equals("back")) {
+//                adminOptionStudentString = userOptionInputError(input,adminOptionStudentString);
+//            }
+//            // IF Option is a number, parse the string as an integer
+//            if (isNumeric(adminOptionStudentString)) {
+//                adminOptionStudent = Integer.parseInt(adminOptionStudentString);
+//            }
+//
+//            // Return to Main Admin's Menu
+//            if (adminOptionStudentString.toLowerCase().equals("back")) {
+//                return;
+//            }
+//            // Student inputs INVALID Menu Option
+//            else if (adminOptionStudent != 1 && adminOptionStudent != 2 && adminOptionStudent != 3) {
+//                adminOptionStudentString = userOptionInputError(input,adminOptionStudentString);
+//            }
+//            // Create a new Student Profile, and add to Student HashMap
+//            else if (adminOptionStudent == 1){
+//                // --> Go to createStudent(HashMap<Integer,Student> s) function <--
+//                // --> IMPORTANT: in createStudent function, check it !HashMap.isFull();
+//            }
+//            // Select and Edit a Current Student Profile
+//            else if (adminOptionStudent == 2){
+//                // --> Go to editStudent(HashMap<Integer,Student> s) function <--
+//                // --> IMPORTANT: in editStudent function, check it !HashMap.isEmpty();
+//            }
+//            // Select and Delete a Current Student Profile
+//            else if (adminOptionStudent == 3){
+//                // --> Go to deleteStudent(HashMap<Integer,Student> s) function <--
+//                // --> IMPORTANT: in deleteStudent function, check it !HashMap.isEmpty();
+//            }
+//
+//        } while (!adminOptionStudentString.toLowerCase().equals("back"));
+//    }
+//
+//    public static void adminMenuRoomsInfo() {
+//        System.out.println("\n ===== ADMIN'S MENU - ROOMS ======");
+//        System.out.println("\n --- What would you like to do? ---");
+//        System.out.println("1) Press '1' to Create a New Room.");
+//        System.out.println("2) Press '2' to Delete a Current Room.");
+//        System.out.println("3) Press '3' to Manage Current Rooms.");
+//        System.out.println("4) Press '4' to Manage the Rooms Waiting List.");
+//        System.out.println("5) Enter 'back' to return to MAIN ADMIN'S MENU.");
+//        System.out.print("    Select your option :  ");
+//    }
+//
+//    public static void adminMenuRooms(Scanner input, Queue<Room> r){
+//        Integer adminOptionRoom = 0;
+//        adminMenuRoomsInfo();
+//        String adminOptionRoomString = input.nextLine();
+//        do {
+//            // Check if Option input is either a number or 'back'
+//            while (!isNumeric(adminOptionRoomString) && !adminOptionRoomString.toLowerCase().equals("back")) {
+//                adminOptionRoomString = userOptionInputError(input,adminOptionRoomString);
+//            }
+//            // IF Option is a number, parse the string as an integer
+//            if (isNumeric(adminOptionRoomString)) {
+//                adminOptionRoom = Integer.parseInt(adminOptionRoomString);
+//            }
+//
+//            // Return to Main Admin's Menu
+//            if (adminOptionRoomString.toLowerCase().equals("back")) {
+//                return;
+//            }
+//            // Student inputs INVALID Menu Option
+//            else if (adminOptionRoom != 1 && adminOptionRoom != 2 && adminOptionRoom != 3 && adminOptionRoom != 4) {
+//                adminOptionRoomString = userOptionInputError(input,adminOptionRoomString);
+//            }
+//            // Create a new Room, and add to Room Queue
+//            else if (adminOptionRoom == 1){
+//                // --> Go to createRoom(Queue<Room> r) function <--
+//                // --> IMPORTANT: in createRoom function, check it !Queue.isFull();
+//            }
+//            // Select and Delete a Current Room
+//            else if (adminOptionRoom == 2){
+//                // --> Go to deleteStudent(Queue<Room> r) function <--
+//                // --> IMPORTANT: in deleteStudent function, check it !Queue.isEmpty();
+//            }
+//            // Go to Rooms Management Menu
+//            else if (adminOptionRoom == 3){
+//                // --> Go to manageRoomsMenu(Queue<Room> r) function <--
+//            }
+//            // Go to Rooms Waiting List Management Menu
+//            else if (adminOptionRoom == 4){
+//                // --> Go to manageWaitingListRoomsMenu(Queue<Room> r) function <--
+//            }
+//
+//        } while (!adminOptionRoomString.toLowerCase().equals("back"));
+//    }
+//
+//    public static void adminMenuBooksInfo() {
+//        System.out.println("\n ===== ADMIN'S MENU - BOOKS ======");
+//        System.out.println("\n --- What would you like to do? ---");
+//        System.out.println("1) Press '1' to Create a New Books.");
+//        System.out.println("2) Press '2' to Edit any Current Books.");
+//        System.out.println("2) Press '3' to Delete a Current Books.");
+//        System.out.println("3) Press '4' to Manage Current Books Holders.");
+//        System.out.println("4) Press '5' to Manage the Books Waiting List.");
+//        System.out.println("5) Enter 'back' to return to MAIN ADMIN'S MENU.");
+//        System.out.print("    Select your option :  ");
+//    }
+//
+//    public static void adminMenuBooks(Scanner input, HashMap<String,Books> b) {
+//        Integer adminOptionBook = 0;
+//        adminMenuBooksInfo();
+//        String adminOptionBookString = input.nextLine();
+//        do {
+//            // Check if Option input is either a number or 'back'
+//            while (!isNumeric(adminOptionBookString) && !adminOptionBookString.toLowerCase().equals("back")) {
+//                adminOptionBookString = userOptionInputError(input,adminOptionBookString);
+//            }
+//            // IF Option is a number, parse the string as an integer
+//            if (isNumeric(adminOptionBookString)) {
+//                adminOptionBook = Integer.parseInt(adminOptionBookString);
+//            }
+//
+//            // Return to Main Admin's Menu
+//            if (adminOptionBookString.toLowerCase().equals("back")) {
+//                return;
+//            }
+//            // Student inputs INVALID Menu Option
+//            else if (adminOptionBook != 1 && adminOptionBook != 2 && adminOptionBook != 3 && adminOptionBook != 4 && adminOptionBook != 5) {
+//                adminOptionBookString = userOptionInputError(input,adminOptionBookString);
+//            }
+//            // Create a new Books, and add to Books HashMap
+//            else if (adminOptionBook == 1){
+//                // --> Go to createBook(HashMap<String,Books> b) function <--
+//                // --> IMPORTANT: in createRoom function, check it !HashMap.isFull();
+//            }
+//            // Select and Edit a Current Books
+//            else if (adminOptionBook == 2){
+//                // --> Go to editBook(HashMap<String,Books> b) function <--
+//                // --> IMPORTANT: in editStudent function, check it !HashMap.isEmpty();
+//            }
+//            // Select and Delete a Current Books
+//            else if (adminOptionBook == 3){
+//                // --> Go to deleteBook(HashMap<String,Books> b) function <--
+//                // --> IMPORTANT: in deleteStudent function, check it !HashMap.isEmpty();
+//            }
+//            // Go to Books Holders Management Menu
+//            else if (adminOptionBook == 4){
+//                // --> Go to manageBookHolders(HashMap<String,Books> b) function <--
+//            }
+//            // Go to Books Waiting List Management Menu
+//            else if (adminOptionBook == 5){
+//                // --> Go to manageWaitingListBookMenu(HashMap<String,Books> b) function <--
+//            }
+//        } while (!adminOptionBookString.toLowerCase().equals("back"));
+//    }
+//
+//    // ===== Load Student HashMap =====
+//
+//    private static void loadStudent (HashMap <Integer,Student> s) {  // KEY = StudentID
+//        File  databaseStudent = new File("databaseStudent.txt");
+//        FileReader read = null;
+//
+//        // File Exceptions
+//        try {
+//            read = new FileReader(databaseStudent);
+//            BufferedReader br = new BufferedReader(read);
+//
+//            String line = null;
+//            try {
+//                while((line = br.readLine()) != null) {
+//                    Student blank  = new Student();
+//                    blank.fromCSV(line);
+//                    s.put(blank.getStudentID(),blank);
+//                }
+//            } catch (IOException ex) {
+//                System.out.println("STUDENT Binary Files are NOT supported");
+//            }
+//        } catch (FileNotFoundException ex) {}
+//    }
+//
+//    // ===== Load Student Queue =====
+//
+//    private static void loadRoom (Queue<Room> r) {
+//        File  databaseRooms = new File("databaseRooms.txt");
+//        FileReader read = null;
+//
+//        // File Exceptions
+//        try {
+//            read = new FileReader(databaseRooms);
+//            BufferedReader br = new BufferedReader(read);
+//
+//            String line = null;
+//            try {
+//                while((line = br.readLine()) != null) {
+//                    Room blank  = new Room();
+//                    blank.fromCSV(line);
+//                    r.add(blank);
+//                }
+//            } catch (IOException ex) {
+//                System.out.println("ROOMS Binary Files are NOT supported");
+//            }
+//        } catch (FileNotFoundException ex) {}
+//    }
+//
+//    private static void loadBooks (HashMap <String,Books> b) {   // KEY = Books Title
+//        File  databaseBooks = new File("databaseBooks.txt");
+//        FileReader read = null;
+//
+//        // File Exceptions
+//        try {
+//            read = new FileReader(databaseBooks);
+//            BufferedReader br = new BufferedReader(read);
+//
+//            String line = null;
+//            try {
+//                while((line = br.readLine()) != null) {
+//                    Books blank  = new Books();
+//                    blank.fromCSV(line);
+//                    b.put(blank.getTitle(),blank);
+//                }
+//            } catch (IOException ex) {
+//                System.out.println("BOOKS Binary Files are NOT supported");
+//            }
+//        } catch (FileNotFoundException ex) {}
+//    }
+//
+//
+//    // ===== Save Student Database (HashMap) =====
+//
+//    private static void saveStudent(HashMap <Integer,Student> s) { // Saves HashMaps ; KEY = StudentID
+//        // ===== FILE CREATION =====
+//        FileReader read = null;
+//        File databaseStudent = new File("databaseStudent.txt");
+//
+//        // ===== FILE SAVE FOR STUDENT DATABASE =====
+//        try {
+//            read = new FileReader(databaseStudent);
+//            try {
+//                System.out.println("Saving to databaseStudent.txt file\n"); // Tells user the program is saving the Student Database
+//                FileWriter writer = null; // Creates new File Writer
+//                writer = new FileWriter("databaseStudent.txt");
+//                BufferedWriter out = new BufferedWriter(writer);
+//
+//                for (Iterator<Integer> it = s.keySet().iterator(); it.hasNext();) {
+//                    Integer curr = it.next();
+//                    out.write(s.get(curr).toCSV()); // Each iteration of student is being saved
+//                }
+//                out.close(); // Stops the File Writer
+//            } catch (IOException ex2) {
+//                System.out.println("\n --- STUDENT FILE ERROR --- \n");
+//            }
+//        } catch (FileNotFoundException ex) { // IF the file doesn't exist...
+//            try {
+//                System.out.println("Created new file called databaseStudent.txt\n"); // Tells user the program has NOW created the new Student Database
+//                FileWriter writer = null; // Creates new File Writer
+//                writer = new FileWriter("databaseStudent.txt");
+//                BufferedWriter out = new BufferedWriter(writer);
+//
+//                for (Iterator<Integer> it = s.keySet().iterator(); it.hasNext();) {
+//                    Integer curr = it.next();
+//                    out.write(s.get(curr).toCSV()); // Each iteration of student is being saved
+//                }
+//                out.close(); // Stops the File Writer
+//            } catch (IOException ex2) {
+//                System.out.println("\n --- STUDENT FILE ERROR --- \n");
+//            }
+//        }
+//    }
+//
+//
+//    // ===== Save Room Database (Queue) =====
+//
+//    private static void saveRoom(Queue <Room> r){ // Saves Queues
+//        // ===== FILE CREATION =====
+//        FileReader read = null;
+//        File databaseRooms = new File("databaseRooms.txt");
+//
+//        // ===== FILE SAVE FOR ROOMS DATABASE =====
+//        try {
+//            read = new FileReader(databaseRooms);
+//            try {
+//                System.out.println("Saving to databaseRooms.txt file\n"); // Tells user the program is saving the Room Database
+//                FileWriter writer = null; // Creates new File Writer
+//                writer = new FileWriter("databaseRooms.txt");
+//                BufferedWriter out = new BufferedWriter(writer);
+//
+//                for (int i = 0; i < r.toArray().length; i++) {
+//                    out.write(r.toArray()[i].toString()); // Each iteration of Room is being saved
+//                }
+//                out.close(); // Stops the File Writer
+//            } catch (IOException ex2) {
+//                System.out.println("\n --- ROOMS FILE ERROR --- \n");
+//            }
+//        } catch (FileNotFoundException ex) { // IF the file doesn't exist...
+//            try {
+//                System.out.println("Created new file called databaseRooms.txt\n"); // Tells user the program has NOW created the new Student Database
+//                FileWriter writer = null; // Creates new File Writer
+//                writer = new FileWriter("databaseRooms.txt");
+//                BufferedWriter out = new BufferedWriter(writer);
+//
+//                for (int i = 0; i < r.toArray().length; i++) {
+//                    out.write(r.toArray()[i].toString()); // Each iteration of Room is being saved
+//                }
+//                out.close(); // Stops the File Writer
+//            } catch (IOException ex2) {
+//                System.out.println("\n --- ROOMS FILE ERROR --- \n");
+//            }
+//        }
+//    }
+//
+//    // ===== Save Books Database (HashMap) =====
+//
+//    private static void saveBooks(HashMap <String,Books> b) { // Saves HashMaps ; KEY = Books Titlex
+//        // ===== FILE CREATION =====
+//        FileReader read = null;
+//        File databaseBooks = new File("databaseBooks.txt");
+//
+//        // ===== FILE SAVE FOR BOOKS DATABASE =====
+//        try {
+//            read = new FileReader(databaseBooks);
+//            try {
+//                System.out.println("Saving to databaseBooks.txt file\n"); // Tells user the program is saving the Student Database
+//                FileWriter writer = null; // Creates new File Writer
+//                writer = new FileWriter("databaseBooks.txt");
+//                BufferedWriter out = new BufferedWriter(writer);
+//
+//                for (Iterator<String> it = b.keySet().iterator(); it.hasNext();) {
+//                    String curr = it.next();
+//                    out.write(b.get(curr).toCSV()); // Each iteration of student is being saved
+//                }
+//                out.close(); // Stops the File Writer
+//            } catch (IOException ex2) {
+//                System.out.println("\n --- BOOKS FILE ERROR --- \n");
+//            }
+//        } catch (FileNotFoundException ex) { // IF the file doesn't exist...
+//            try {
+//                System.out.println("Created new file called databaseBooks.txt\n"); // Tells user the program has NOW created the new Student Database
+//                FileWriter writer = null; // Creates new File Writer
+//                writer = new FileWriter("databaseBooks.txt");
+//                BufferedWriter out = new BufferedWriter(writer);
+//
+//                for (Iterator<String> it = b.keySet().iterator(); it.hasNext();) {
+//                    String curr = it.next();
+//                    out.write(b.get(curr).toCSV()); // Each iteration of student is being saved
+//                }
+//                out.close(); // Stops the File Writer
+//            } catch (IOException ex2) {
+//                System.out.println("\n --- BOOKS FILE ERROR --- \n");
+//            }
+//        }
+//    }
+//
 
 }

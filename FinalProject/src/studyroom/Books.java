@@ -5,13 +5,12 @@ import java.util.Queue;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Books
-{
+public class Books {
     /*
      * Data Structure to represent a book
      * Properties: Author, Title, ISBN, available quantitiy
      */
-    private class Book
+    protected class Book
     {
         // Properties of a book
         private int quantity;
