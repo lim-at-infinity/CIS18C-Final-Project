@@ -31,8 +31,16 @@ public class Driver {
         // Call Menu
         logInMenu(input,s,r,b);
     }
-    
-    
+
+    public static void logInMenuInfo() {
+        System.out.println("\n ----- LOG IN -----");
+        System.out.println(" --- Welcome to the Wilfred J. Airey Library at Norco College ---");
+        System.out.println(" --- How may we help you today? ---");
+        System.out.println(" --- Press #1 to Log In.");
+        System.out.println(" --- Press #2 to Register as a New User.");
+        System.out.println(" --- Press #3 to Exit the Program.");
+        System.out.print(" --- Select your option:  ");
+    }
     
     public static void logInMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         Integer userOption = null;
@@ -78,16 +86,6 @@ public class Driver {
         System.out.print("  Select your option :  ");
         userOptionString = input.nextLine();
         return userOptionString;
-    }
-    
-    public static void logInMenuInfo() {
-        System.out.println("\n ----- LOG IN -----");
-        System.out.println(" --- Welcome to the Wilfred J. Airey Library at Norco College ---");
-        System.out.println(" --- How may we help you today? ---");
-        System.out.println(" --- Press #1 to Log In.");
-        System.out.println(" --- Press #2 to Register as a New User.");
-        System.out.println(" --- Press #3 to Exit the Program.");
-        System.out.print(" --- Select your option:  ");
     }
 
     public static void saveAll(HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
