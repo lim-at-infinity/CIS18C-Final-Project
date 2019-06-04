@@ -63,7 +63,7 @@ public class TFLAS {
         } catch (FileNotFoundException ex) {} 
     }
     
-    private static void loadBooks (HashMap <String,Book> b) {   // KEY = Book Title
+    private static void loadBooks (HashMap <String,Books> b) {   // KEY = Books Title
         File  databaseBooks = new File("databaseBooks.txt");
         FileReader read = null;
         
@@ -75,7 +75,7 @@ public class TFLAS {
             String line = null;
             try {
                 while((line = br.readLine()) != null) {
-                    Book blank  = new Book();
+                    Books blank  = new Books();
                     blank.fromCSV(line);
                     b.put(blank.getTitle(),blank);
                 }
@@ -171,7 +171,7 @@ public class TFLAS {
     
     // ===== Save Books Database (HashMap) =====
     
-    private static void saveBooks(HashMap <String,Book> b) {       // Saves HashMaps ; KEY = Book Titlex
+    private static void saveBooks(HashMap <String,Books> b) {       // Saves HashMaps ; KEY = Books Titlex
         // ===== FILE CREATION =====
         FileReader read = null;
         File databaseBooks = new File("databaseBooks.txt");

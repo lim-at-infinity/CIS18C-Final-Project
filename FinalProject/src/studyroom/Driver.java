@@ -1,6 +1,5 @@
 package studyroom;
 
-import java.awt.print.Book;
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Queue;
@@ -14,14 +13,14 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class StudyRoom_ {
+public class Driver {
     
     public static void main(String[] args) {
         
         // Input and Collections CREATION
         HashMap <Integer,Student> s = new HashMap();
         Queue <Room> r = new LinkedList<>();
-        HashMap <String, Book> b = new HashMap();
+        HashMap <String, Books> b = new HashMap();
         Scanner input = new Scanner(System.in);
         
         // Loading up Collections
@@ -35,7 +34,7 @@ public class StudyRoom_ {
     
     
     
-    public static void logInMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+    public static void logInMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         Integer userOption = null;
         do {
             logInMenuInfo(); 
@@ -91,7 +90,7 @@ public class StudyRoom_ {
         System.out.print(" --- Select your option:  ");
     }
 
-    public static void saveAll(HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+    public static void saveAll(HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         System.out.println(" --- Saving all Databases ---");
 
         // Saves all Collections to Text Files
@@ -109,7 +108,7 @@ public class StudyRoom_ {
         System.exit(0);
     }
     
-    public static void functionLogIn(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+    public static void functionLogIn(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         Integer userStudentID = 0;
         String userStudentIDString = "";
         do {
@@ -192,7 +191,7 @@ public class StudyRoom_ {
         System.out.println('\n');
     }
 
-    public static void studentMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+    public static void studentMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         Integer studentOption = 0;
         //Instantiate a Study room
         Room studyRoomObj = new Room();
@@ -322,7 +321,7 @@ public class StudyRoom_ {
         System.out.print("  Select your option :  ");
     }
 
-    public static void adminMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Book> b) {
+    public static void adminMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         Integer adminOption = 0;
         adminMenuInfo();
         String adminOptionString = input.nextLine();
@@ -470,16 +469,16 @@ public class StudyRoom_ {
     public static void adminMenuBooksInfo() {
         System.out.println("\n ===== ADMIN'S MENU - BOOKS ======");
         System.out.println("\n --- What would you like to do? ---");
-        System.out.println("1) Press '1' to Create a New Book.");
+        System.out.println("1) Press '1' to Create a New Books.");
         System.out.println("2) Press '2' to Edit any Current Books.");
-        System.out.println("2) Press '3' to Delete a Current Book.");
-        System.out.println("3) Press '4' to Manage Current Book Holders.");
+        System.out.println("2) Press '3' to Delete a Current Books.");
+        System.out.println("3) Press '4' to Manage Current Books Holders.");
         System.out.println("4) Press '5' to Manage the Books Waiting List.");
         System.out.println("5) Enter 'back' to return to MAIN ADMIN'S MENU.");
         System.out.print("    Select your option :  ");
     }
 
-    public static void adminMenuBooks(Scanner input, HashMap<String,Book> b) {
+    public static void adminMenuBooks(Scanner input, HashMap<String,Books> b) {
         Integer adminOptionBook = 0;
         adminMenuBooksInfo();
         String adminOptionBookString = input.nextLine();
@@ -501,28 +500,28 @@ public class StudyRoom_ {
             else if (adminOptionBook != 1 && adminOptionBook != 2 && adminOptionBook != 3 && adminOptionBook != 4 && adminOptionBook != 5) {
                 adminOptionBookString = userOptionInputError(input,adminOptionBookString);
             }
-            // Create a new Book, and add to Book HashMap
+            // Create a new Books, and add to Books HashMap
             else if (adminOptionBook == 1){
-                // --> Go to createBook(HashMap<String,Book> b) function <--
+                // --> Go to createBook(HashMap<String,Books> b) function <--
                 // --> IMPORTANT: in createRoom function, check it !HashMap.isFull();
             }
-            // Select and Edit a Current Book
+            // Select and Edit a Current Books
             else if (adminOptionBook == 2){
-                // --> Go to editBook(HashMap<String,Book> b) function <--
+                // --> Go to editBook(HashMap<String,Books> b) function <--
                 // --> IMPORTANT: in editStudent function, check it !HashMap.isEmpty();
             }
-            // Select and Delete a Current Book
+            // Select and Delete a Current Books
             else if (adminOptionBook == 3){
-                // --> Go to deleteBook(HashMap<String,Book> b) function <--
+                // --> Go to deleteBook(HashMap<String,Books> b) function <--
                 // --> IMPORTANT: in deleteStudent function, check it !HashMap.isEmpty();
             }
-            // Go to Book Holders Management Menu
+            // Go to Books Holders Management Menu
             else if (adminOptionBook == 4){
-                // --> Go to manageBookHolders(HashMap<String,Book> b) function <--
+                // --> Go to manageBookHolders(HashMap<String,Books> b) function <--
             }
-            // Go to Book Waiting List Management Menu
+            // Go to Books Waiting List Management Menu
             else if (adminOptionBook == 5){
-                // --> Go to manageWaitingListBookMenu(HashMap<String,Book> b) function <--
+                // --> Go to manageWaitingListBookMenu(HashMap<String,Books> b) function <--
             }
         } while (!adminOptionBookString.toLowerCase().equals("back"));
     }
@@ -575,7 +574,7 @@ public class StudyRoom_ {
         } catch (FileNotFoundException ex) {}
     }
 
-    private static void loadBooks (HashMap <String,Book> b) {   // KEY = Book Title
+    private static void loadBooks (HashMap <String,Books> b) {   // KEY = Books Title
         File  databaseBooks = new File("databaseBooks.txt");
         FileReader read = null;
 
@@ -587,7 +586,7 @@ public class StudyRoom_ {
             String line = null;
             try {
                 while((line = br.readLine()) != null) {
-                    Book blank  = new Book();
+                    Books blank  = new Books();
                     blank.fromCSV(line);
                     b.put(blank.getTitle(),blank);
                 }
@@ -683,7 +682,7 @@ public class StudyRoom_ {
 
     // ===== Save Books Database (HashMap) =====
 
-    private static void saveBooks(HashMap <String,Book> b) { // Saves HashMaps ; KEY = Book Titlex
+    private static void saveBooks(HashMap <String,Books> b) { // Saves HashMaps ; KEY = Books Titlex
         // ===== FILE CREATION =====
         FileReader read = null;
         File databaseBooks = new File("databaseBooks.txt");

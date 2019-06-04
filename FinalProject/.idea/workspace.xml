@@ -1,17 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="cc11fb51-2a63-40c3-8acd-910154e9e512" name="Default Changelist" comment="Migrated classes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CIS18C-Final-Project/studyroom/Driver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CIS18C-Final-Project/studyroom/Driver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studyroom/Book.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/studyroom/Book.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studyroom/Driver.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studyroom/LSD.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/studyroom/LSD.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studyroom/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/studyroom/Room.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studyroom/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/studyroom/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studyroom/reservation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/studyroom/reservation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/studyroom/studyRoom.java" beforeDir="false" />
-    </list>
+    <list default="true" id="cc11fb51-2a63-40c3-8acd-910154e9e512" name="Default Changelist" comment="Migrated classes" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -30,13 +20,51 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/studyroom/StudyRoom_.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/studyroom/Driver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2393">
-              <caret line="312" column="119" selection-start-line="312" selection-start-column="119" selection-end-line="312" selection-end-column="119" />
+            <state relative-caret-position="5185">
+              <caret line="305" column="26" lean-forward="true" selection-start-line="305" selection-start-column="26" selection-end-line="305" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/studyroom/Books.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="323">
+              <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#920#921#0" expanded="true" />
+                <element signature="e#959#960#0" expanded="true" />
+                <element signature="e#1002#1003#0" expanded="true" />
+                <element signature="e#1038#1039#0" expanded="true" />
+                <element signature="e#1080#1081#0" expanded="true" />
+                <element signature="e#1115#1116#0" expanded="true" />
+                <element signature="e#1159#1160#0" expanded="true" />
+                <element signature="e#1196#1197#0" expanded="true" />
+                <element signature="e#1244#1245#0" expanded="true" />
+                <element signature="e#1287#1288#0" expanded="true" />
+                <element signature="e#1343#1344#0" expanded="true" />
+                <element signature="e#1385#1386#0" expanded="true" />
+                <element signature="e#1461#1462#0" expanded="true" />
+                <element signature="e#1509#1510#0" expanded="true" />
+                <element signature="e#1562#1563#0" expanded="true" />
+                <element signature="e#1604#1605#0" expanded="true" />
+                <element signature="e#1655#1656#0" expanded="true" />
+                <element signature="e#1695#1696#0" expanded="true" />
+                <element signature="e#1750#1751#0" expanded="true" />
+                <element signature="e#1794#1795#0" expanded="true" />
+                <element signature="e#1855#1856#0" expanded="true" />
+                <element signature="e#1911#1912#0" expanded="true" />
+                <element signature="e#1993#1994#0" expanded="true" />
+                <element signature="e#2049#2050#0" expanded="true" />
+                <element signature="e#2168#2169#0" expanded="true" />
+                <element signature="e#2219#2220#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -79,6 +107,12 @@
     </option>
   </component>
   <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Book</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>Books</replace>
+    </replaceStrings>
     <dirStrings>
       <dir>C:\Users\micro\Desktop\NASA\Main Project\CIS18C-Final-Project\FinalProject\src\studyroom</dir>
     </dirStrings>
@@ -94,16 +128,17 @@
         <option value="$PROJECT_DIR$/src/StudentDriver.java" />
         <option value="$PROJECT_DIR$/src/Books.java" />
         <option value="$PROJECT_DIR$/src/studyroom/BooksMethod.java" />
-        <option value="$PROJECT_DIR$/src/studyroom/Book.java" />
         <option value="$PROJECT_DIR$/src/studyroom/StudyRoom.java" />
         <option value="$PROJECT_DIR$/src/studyroom/Reservation.java" />
         <option value="$PROJECT_DIR$/src/studyroom/studyRoom.java" />
-        <option value="$PROJECT_DIR$/src/studyroom/Driver.java" />
         <option value="$PROJECT_DIR$/src/studyroom/Room.java" />
         <option value="$PROJECT_DIR$/src/studyroom/reservation.java" />
         <option value="$PROJECT_DIR$/src/studyroom/Student.java" />
         <option value="$PROJECT_DIR$/src/studyroom/LSD.java" />
         <option value="$PROJECT_DIR$/src/studyroom/StudyRoom_.java" />
+        <option value="$PROJECT_DIR$/src/studyroom/Book.java" />
+        <option value="$PROJECT_DIR$/src/studyroom/Driver.java" />
+        <option value="$PROJECT_DIR$/src/studyroom/Books.java" />
       </list>
     </option>
   </component>
@@ -149,7 +184,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559685929499" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559686648588" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -219,12 +254,12 @@
       <workItem from="1559541558947" duration="3222000" />
       <workItem from="1559612930398" duration="1197000" />
       <workItem from="1559683140503" duration="420000" />
-      <workItem from="1559685106192" duration="823000" />
+      <workItem from="1559685106192" duration="1541000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19288000" />
+    <option name="totallyTimeSpent" value="20006000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1549" height="837" extended-state="6" />
@@ -312,13 +347,6 @@
     <entry file="file://$PROJECT_DIR$/src/Student.java" />
     <entry file="file://$PROJECT_DIR$/src/TFLAS.java" />
     <entry file="file://$PROJECT_DIR$/src/StudyRoom.java" />
-    <entry file="file://$PROJECT_DIR$/src/studyroom/Book.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="24" selection-start-line="15" selection-start-column="24" selection-end-line="15" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/studyroom/TFLAS.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="308">
@@ -369,12 +397,48 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/studyroom/StudyRoom_.java">
+    <entry file="file://$PROJECT_DIR$/src/studyroom/Driver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2393">
-          <caret line="312" column="119" selection-start-line="312" selection-start-column="119" selection-end-line="312" selection-end-column="119" />
+        <state relative-caret-position="5185">
+          <caret line="305" column="26" lean-forward="true" selection-start-line="305" selection-start-column="26" selection-end-line="305" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/studyroom/Books.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="30" lean-forward="true" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#920#921#0" expanded="true" />
+            <element signature="e#959#960#0" expanded="true" />
+            <element signature="e#1002#1003#0" expanded="true" />
+            <element signature="e#1038#1039#0" expanded="true" />
+            <element signature="e#1080#1081#0" expanded="true" />
+            <element signature="e#1115#1116#0" expanded="true" />
+            <element signature="e#1159#1160#0" expanded="true" />
+            <element signature="e#1196#1197#0" expanded="true" />
+            <element signature="e#1244#1245#0" expanded="true" />
+            <element signature="e#1287#1288#0" expanded="true" />
+            <element signature="e#1343#1344#0" expanded="true" />
+            <element signature="e#1385#1386#0" expanded="true" />
+            <element signature="e#1461#1462#0" expanded="true" />
+            <element signature="e#1509#1510#0" expanded="true" />
+            <element signature="e#1562#1563#0" expanded="true" />
+            <element signature="e#1604#1605#0" expanded="true" />
+            <element signature="e#1655#1656#0" expanded="true" />
+            <element signature="e#1695#1696#0" expanded="true" />
+            <element signature="e#1750#1751#0" expanded="true" />
+            <element signature="e#1794#1795#0" expanded="true" />
+            <element signature="e#1855#1856#0" expanded="true" />
+            <element signature="e#1911#1912#0" expanded="true" />
+            <element signature="e#1993#1994#0" expanded="true" />
+            <element signature="e#2049#2050#0" expanded="true" />
+            <element signature="e#2168#2169#0" expanded="true" />
+            <element signature="e#2219#2220#0" expanded="true" />
           </folding>
         </state>
       </provider>
