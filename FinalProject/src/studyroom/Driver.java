@@ -191,6 +191,7 @@ public class Driver {
 
     public static void studentMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         Integer studentOption = 0;
+        int bookOption = 0;
         //Instantiate a Study room
         Room studyRoomObj = new Room();
 
@@ -226,17 +227,16 @@ public class Driver {
                 System.out.println(books.addBook(2, "Mary Had a Little Lamb", "37h-193a-9jj", "Mozart"));
                 System.out.println(books.addBook(3, "Calculus 1", "777-777-7777", "Newton"));
                 System.out.print(" \n");
-                System.out.println(" ===== Book Menu =====");
-                System.out.println("\n --- What would you like to do? ---");
-                System.out.println("   --- Press #1 To View All Books.");
-                System.out.println("   --- Press #2 TO Checkout A Book.");
-                System.out.println("   --- Press #3 To Return A book");
-                System.out.println("   --- Press #4 To Return to student menu.");
-                System.out.println("   --- Select your option:  ");
 
-                int bookOption = input.nextInt();
-
-                while(bookOption != 4) {
+               do {
+                   System.out.println(" ===== Book Menu =====");
+                   System.out.println("\n --- What would you like to do? ---");
+                   System.out.println("   --- Press #1 To View All Books.");
+                   System.out.println("   --- Press #2 TO Checkout A Book.");
+                   System.out.println("   --- Press #3 To Return A book");
+                   System.out.println("   --- Press #4 To Return to student menu.");
+                   System.out.println("   --- Select your option:  ");
+                   bookOption = input.nextInt();
                     switch (bookOption) {
                         case 1:
                             System.out.println(books.displayBooks());
@@ -259,12 +259,12 @@ public class Driver {
                             System.out.println("Invalid Input");
                             break;
                     }
-                }
+                } while (bookOption != 4);
             case 3:
                 break;
 
             default:
-                System.out.println("Invalud Input");
+                System.out.println("Invalid Input");
                 break;
         }
     }
