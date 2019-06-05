@@ -14,20 +14,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Driver {
-    
+
     public static void main(String[] args) {
-        
+
         // Input and Collections CREATION
         HashMap <Integer,Student> s = new HashMap();
         Queue <Room> r = new LinkedList<>();
         HashMap <String, Books> b = new HashMap();
         Scanner input = new Scanner(System.in);
-        
+
         // Loading up Collections
 //        loadStudent(s);
 //        loadRoom(r);
 //        loadBooks(b);
-        
+
         // Call Menu
         logInMenu(input,s,r,b);
     }
@@ -41,18 +41,18 @@ public class Driver {
         System.out.println(" --- Press #3 to Exit the Program.");
         System.out.print(" --- Select your option:  ");
     }
-    
+
     public static void logInMenu(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         Integer userOption = null;
         do {
-            logInMenuInfo(); 
+            logInMenuInfo();
             String userOptionString = input.nextLine();
             // Check if user input is NUMERIC
             while (!isNumeric(userOptionString)){
                 userOptionString = userOptionInputError(input,userOptionString);
             }
             userOption = Integer.parseInt(userOptionString);
-            
+
             // User inputs INVALID Log In option
             if (userOption != 1 && userOption != 2 && userOption != 3) {
                 userOptionInputError(input,userOptionString);
@@ -69,10 +69,10 @@ public class Driver {
             else if (userOption == 3) {
                 saveAll(s,r,b);
             }
-            
+
         } while (userOption != 3);
     }
-    
+
     public static boolean isNumeric(String strNum) {
         try {
             Integer digit = Integer.parseInt(strNum);
@@ -81,7 +81,7 @@ public class Driver {
         }
         return true;
     }
-    
+
     public static String userOptionInputError(Scanner input, String userOptionString) {
         System.out.print("  Select your option :  ");
         userOptionString = input.nextLine();
@@ -105,7 +105,7 @@ public class Driver {
         // Ends Program
         System.exit(0);
     }
-    
+
     public static void functionLogIn(Scanner input, HashMap<Integer, Student> s, Queue<Room> r, HashMap<String,Books> b) {
         Integer userStudentID = 0;
         String userStudentIDString = "";
@@ -114,18 +114,18 @@ public class Driver {
                     + " or enter 'back' to return to the Log In Menu. ---");
             System.out.print("     -- Student ID: ");
             userStudentIDString = input.nextLine();
-            
+
             // Check if ID input is either a number, 'admin', or 'back
-            while (!isNumeric(userStudentIDString) && !userStudentIDString.toLowerCase().equals("admin") 
+            while (!isNumeric(userStudentIDString) && !userStudentIDString.toLowerCase().equals("admin")
                     && !userStudentIDString.toLowerCase().equals("back")) {
                 userStudentIDString = functionStudentIDNotNumeric(input, userStudentIDString);
             }
-            
+
             // If ID is a number, parse the string as an integer
             if (isNumeric(userStudentIDString)) {
                 userStudentID = Integer.parseInt(userStudentIDString);
             }
-        
+
             // Admin's Log In
             if (userStudentIDString.toLowerCase().equals("admin")) {
                 //adminMenu(input,s,r,b);
@@ -142,25 +142,25 @@ public class Driver {
             else if (s.containsKey(userStudentID)) {
                 studentMenu(input,s,r,b);
             }
-            
+
         } while (!userStudentIDString.toLowerCase().equals("back"));
     }
-    
+
     public static void functionLogInNotRegistered() {
         System.out.println(" --- Student ID has not been registered into the Library collection. ---");
         System.out.println(" --- Please return to the Log In Menu to register your Student ID. ---");
     }
-    
+
     public static String functionStudentIDNotNumeric(Scanner input, String userStudentIDString) {
         System.out.println(" ===== ERROR: Student ID is NUMERIC. Please enter your NUMERIC Student ID. =====");
         System.out.print("  -- Student ID: ");
         userStudentIDString = input.nextLine();
         return userStudentIDString;
     }
-    
+
     public static void registerStudent(Scanner input, HashMap<Integer,Student> s) {
         Student temp = new Student();
-        
+
         // New Student ID
         System.out.println("\n --- Please Enter your 7-digit Student ID ---");
         System.out.print("     -- Student ID: ");
@@ -171,19 +171,19 @@ public class Driver {
         // ----> IMPORTANT: Need to include an ID check, see if it already exists in Hashmap
         // ----> IMPORTANT: IF ID exists, call user to input a different ID
         temp.setStudentID(Integer.parseInt(registerStudentID));
-        
+
         // New Student First Name
         System.out.println("\n --- Please Enter your First Name ---");
         System.out.print("     -- First Name: ");
         String registerStudentFirstName = input.nextLine();
         temp.setFirstName(registerStudentFirstName);
-        
+
         // New Student Last Name
         System.out.println("\n --- Please Enter your Last Name ---");
         System.out.print("     -- Last Name: ");
         String registerStudentLastName = input.nextLine();
         temp.setLastName(registerStudentLastName);
-        
+
         s.put(Integer.parseInt(registerStudentID), temp);
         System.out.println("\n --- New Student added to the Library Collection ---");
         System.out.println('\n');
@@ -193,106 +193,84 @@ public class Driver {
         Integer studentOption = 0;
         //Instantiate a Study room
         Room studyRoomObj = new Room();
-        
+
         //temp variables we'll need later
         String name;
         String num;
         int roomnum;
-        
+
         // studentMenuInfo;
-        
-        String studentOptionString = input.nextLine();
-        
+
+
         //Main Loop
-            //---Display promt --- 
-            System.out.print(" \n");
-            System.out.println(" ===== Student's Menu =====");
-            System.out.println("\n --- What would you like to do? ---");
-            System.out.println("   --- Press #1 to view study rooms available.");
-            System.out.println("   --- Press #2 to check out any available study room.");
-            System.out.println("   --- Press #3 to check out a particular study room.");
-            System.out.println("   --- Press #4 to cancel a study room.");
-            System.out.println("   --- Press #5 to check out a book.");
-            System.out.println("   --- Press #6 to check a book back in.");
-            System.out.println("   --- Enter #7 to return to Student's Menu.");
-            System.out.println("   --- Select your option:  ");
+        //---Display promt ---
+        System.out.print(" \n");
+        System.out.println(" ===== Student's Menu =====");
+        System.out.println("\n --- What would you like to do? ---");
+        System.out.println("   --- Press #1 for Room Reservation Department.");
+        System.out.println("   --- Press #2 for Book Department.");
+        System.out.println("   --- Press #3 to return to Log In Menu");
+        System.out.println("   --- Select your option:  ");
 
-            // Go to ROOM view-AVAILABLE
-            switch (studentOption) {
-                case 1:
+        int departmentOption = input.nextInt();
 
-                    break;
-                case 2:
-                    //prompt for name
-                    System.out.print("Please enter your name: ");
-                    System.out.flush();
-                    name = input.nextLine();
-                    roomnum = -1;
-                    //if good name provided, try to reserve any study room
-                    if (!((name == null) || (name.equals("")))) {
-                        roomnum = studyRoomObj.reserveRoom(name);
-                    }     //Display feedback
-                    if (roomnum == -1) {
-                        System.out.println("No study rooms available");
-                    } else {
-                        System.out.println(name + " has reserved study room " + roomnum);
+        // Go to ROOM view-AVAILABLE
+        switch (departmentOption)
+        {
+            case 1:
+                break;
+            case 2:
+                //HARD CODING THE BOOKS
+                Books books = new Books();
+                System.out.println(books.addBook(1, "The Alchemist", "189-hn3-038n", "Paulo Cohelo"));
+                System.out.println(books.addBook(2, "Mary Had a Little Lamb", "37h-193a-9jj", "Mozart"));
+                System.out.println(books.addBook(3, "Calculus 1", "777-777-7777", "Newton"));
+                System.out.print(" \n");
+                System.out.println(" ===== Book Menu =====");
+                System.out.println("\n --- What would you like to do? ---");
+                System.out.println("   --- Press #1 To View All Books.");
+                System.out.println("   --- Press #2 TO Checkout A Book.");
+                System.out.println("   --- Press #3 To Return A book");
+                System.out.println("   --- Press #4 To Return to student menu.");
+                System.out.println("   --- Select your option:  ");
+
+                int bookOption = input.nextInt();
+
+                while(bookOption != 4) {
+                    switch (bookOption) {
+                        case 1:
+                            System.out.println(books.displayBooks());
+                            break;
+                        case 2:
+                            System.out.println("Enter the title of the book: ");
+                            String title = input.nextLine();
+                            System.out.println("Enter your name:");
+                            String Studentname = input.nextLine();
+                            System.out.println(books.checkoutBook(title, Studentname));
+                            break;
+                        case 3:
+                            System.out.println("Enter the name of the book you're returning:");
+                            title = input.nextLine();
+                            System.out.println(books.returnBook(title));
+                            break;
+                        case 4:
+                            break;
+                        default:
+                            System.out.println("Invalid Input");
+                            break;
                     }
-                    System.out.println('\n');
-                    break;
-                case 3:
-                    //prompt for name and study room
-                    System.out.print("Please enter your name: ");
-                    //              System.out.flush();
-                    name = input.nextLine();
-                    System.out.print("Study room 1,2,3,4: ");
-                    //              System.out.flush();
-                    num = input.nextLine();
-                    // if input was bad, failure reported
-                    if ((name == null) || (name.equals("")) || (num == null)) {
-                        roomnum = -1;
-                    } else {
-                        //convert the String to an int (and catch any failure)
-                        try {
-                            roomnum = Integer.parseInt(num);
-                        } catch (NumberFormatException e) {
-                            roomnum = -1;
-                        }
-                    }      //Display feedback
-                    if (!studyRoomObj.reserveRoom(name, roomnum)) {
-                        System.out.println(("Study room ") + (roomnum) + (" is not available"));
-                    } else {
-                        System.out.println(name + " has reserved study room " + roomnum);
-                    }
-                    break;
-                case 4:
-                    //prompt for name
-                    System.out.print("Please enter your name: ");
-                    System.out.flush();
-                    name = input.nextLine();
-                    //if good name provided, cancel user reservation
-                    if (!((name == null) || (name.equals("")))) {
-                        studyRoomObj.cancelreservation(name);
-                        System.out.println(name + " reserved study room has been Canceled.");
-                    } else {
-                        System.out.println("Enter another name");
-                    }
-                    break;
-                // Go to BOOK CHECKOUT Function <--
-                case 5:
-                    break;
-                // Go to BOOK CHECKIN Function <--
-                case 6:
-                    break;
-                case 7:
-                    break;
-                default:
-                    System.out.println("Invalid entry. Please try!");
-                    break;
-            }
+                }
+            case 3:
+                break;
+
+            default:
+                System.out.println("Invalud Input");
+                break;
         }
     }
+}
 
-    //========================================================== ADMIN METHODS ========================================
+//========================================================== ADMIN METHODS ========================================
 //
 //    public static void adminMenuInfo(){
 //        System.out.println("\n ===== ADMIN'S MENU - MAIN =====");
@@ -705,4 +683,3 @@ public class Driver {
 //        }
 //    }
 //
-
